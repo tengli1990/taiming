@@ -1,11 +1,14 @@
 <view class="user-login">
     <!-- 自动获取手机号 -->
     <view class="middle-box fill-auto">
-        <view>太铭生物</view>
-        
+        <view class="title">{{title}}</view>
+        <view class="">
+          
+        </view>
     </view>
 
     <!-- 手动输入手机号 -->
     <view class="middle-box fill-manual">
+        <view class="title">{{title}}</view>
     </view>
 </view>
