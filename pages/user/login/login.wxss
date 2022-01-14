@@ -1,0 +1,9 @@
+.user-login {
+  height: 100%;
+  display: flex;
+}
+.user-login .middle-box {
+  width: 90%;
+  height: 300rpx;
+  background: #fff;
+}
