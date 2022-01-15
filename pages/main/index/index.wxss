@@ -1,19 +1,64 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
+.module-list {
+  margin: 40rpx 40rpx 0;
+  background-color: rgba(103, 194, 58, 0.06);
+  border-radius: 16rpx;
 }
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+.module-list .content-bg {
+  background: none;
+}
+.search-box {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 20rpx;
+  border-bottom: 1rpx solid rgba(206, 206, 206, 0.3);
+}
+.search-box .multiple {
+  width: 250rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #686868;
+}
+.search-box .input {
+  flex: 1;
+}
+.personnel-list {
+  padding: 0 32rpx;
+}
+.personnel-list .item {
+  display: flex;
+  border-bottom: 1rpx solid rgba(206, 206, 206, 0.2);
+  height: 144rpx;
+  align-items: center;
+}
+.personnel-list .item .head-portrait {
+  width: 108rpx;
+  height: 108rpx;
+}
+.personnel-list .item .head-portrait .img {
+  width: 92rpx;
+  height: 92rpx;
+  background: #eeeeee;
   border-radius: 50%;
 }
-
-.usermotto {
-  margin-top: 200px;
+.personnel-list .item .info {
+  flex: 1;
+}
+.personnel-list .item .info .title .name {
+  font-size: 34rpx;
+}
+.personnel-list .item .info .title .gender,
+.personnel-list .item .info .title .age {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+.personnel-list .item .info .other {
+  font-size: 28rpx;
+  color: rgba(0, 0, 0, 0.3);
+}
+.personnel-list .item .info .other .line {
+  padding: 0 20rpx;
+}
+.personnel-list .item .arrow {
+  color: #919191;
 }

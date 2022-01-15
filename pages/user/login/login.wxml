@@ -1,14 +1,49 @@
 <view class="user-login">
-    <!-- 自动获取手机号 -->
-    <view class="middle-box fill-auto">
-        <view class="title">{{title}}</view>
-        <view class="">
-          
+  <!-- 自动获取手机号 -->
+  <view class="middle-box fill-auto" wx:if="{{fillMode === 'auto'}}">
+    <view class="title">申请使用</view>
+    <view class="content">
+      <van-cell>
+        <view slot="title">
+          <view class="van-cell-text">
+            <text class="label">您的手机号</text>
+            <text class="value">{{title}}</text>
+          </view>
         </view>
+      </van-cell>
+      <van-cell>
+        <view slot="title">
+          <view class="van-cell-text">
+            <text class="label">{{mobile}}</text>
+            <text class="value">微信绑定的号码</text>
+            <van-icon class="success-icon" name="success" />
+          </view>
+        </view>
+      </van-cell>
+      <view class="use-other" bindtap="changeMode">使用其他号码</view>
     </view>
-
-    <!-- 手动输入手机号 -->
-    <view class="middle-box fill-manual">
-        <view class="title">{{title}}</view>
+    <view class="foot-operations">
+      <van-button class="btn" block>拒绝</van-button>
+      <van-button class="btn" type="primary" block>允许</van-button>
     </view>
+  </view>
+  <!-- 手动输入手机号 -->
+  <view class="middle-box fill-manual" wx:else>
+    <view class="title">{{title}}</view>
+    <view class="content">
+      <van-field title-width="4em" value="{{ mobile }}" clearable label="手机号码" placeholder="请输入手机号码" />
+      <van-field title-width="4em" value="{{ sms }}" center clearable label="验证码" placeholder="请输入验证码" use-button-slot>
+        <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+      </van-field>
+      <view class="agreement">
+        <van-checkbox value="{{ agreementChecked }}" shape="square" icon-size="32rpx" bind:change="onAgreementChange">
+          <text class="agreement-text">已阅读并同意</text>
+          <text class="agreement-text">《授权协议》</text>
+        </van-checkbox>
+      </view>
+      <view class="foot-operations">
+        <van-button type="primary" block>确定</van-button>
+      </view>
+    </view>
+  </view>
 </view>
