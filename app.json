@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/user/login/login",
     "pages/main/index/index",
-    "pages/main/filter/filter",
-    "pages/user/login/login"
+    "pages/main/filter/filter"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,6 +21,7 @@
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
     "van-search": "@vant/weapp/search/index",
-    "van-circle": "@vant/weapp/circle/index"
+    "van-circle": "@vant/weapp/circle/index",
+    "van-toast": "@vant/weapp/toast/index"
   }
 }

@@ -9,7 +9,7 @@
         ]
     },
     "setting": {
-        "urlCheck": true,
+        "urlCheck": false,
         "es6": true,
         "enhance": true,
         "postcss": true,
@@ -36,7 +36,7 @@
             "outputPath": ""
         },
         "enableEngineNative": false,
-        "useIsolateContext": true,
+        "useIsolateContext": false,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": true,
         "packNpmRelationList": [
@@ -52,8 +52,8 @@
         "useCompilerPlugins": false
     },
     "compileType": "miniprogram",
-    "libVersion": "2.21.2",
-    "appid": "wx76b0c7970fd3e874",
+    "libVersion": "2.21.3",
+    "appid": "wxb4202f423eb20e02",
     "projectname": "%E5%A4%AA%E9%93%AD%E7%94%9F%E7%89%A9",
     "debugOptions": {
         "hidedInDevtools": []
