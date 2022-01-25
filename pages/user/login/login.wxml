@@ -6,15 +6,15 @@
           授权手机号
         </van-button>
       </van-field>
-      <van-field title-width="4em" value="{{ sms }}" center clearable label="验证码" placeholder="请输入验证码" use-button-slot>
+      <van-field title-width="4em" model:value="{{ sms }}" center clearable label="验证码" placeholder="请输入验证码" use-button-slot>
         <van-button slot="button" size="small" type="primary" disabled="{{isSending}}" bindtap="sendCode">{{isSending?countDown+'s重新发送':"发送验证码"}}</van-button>
       </van-field>
-      <view class="agreement">
+      <!-- <view class="agreement">
         <van-checkbox value="{{ agreementChecked }}" shape="square" icon-size="32rpx" bind:change="onAgreementChange">
           <text class="agreement-text">已阅读并同意</text>
           <text class="agreement-text">《授权协议》</text>
         </van-checkbox>
-      </view>
+      </view> -->
       <view class="foot-operations">
         <van-button type="primary" block bindtap="checkWhiteList">确定</van-button>
       </view>

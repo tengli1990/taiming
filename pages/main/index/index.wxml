@@ -1,4 +1,5 @@
 <view class="main-index">
+  
   <view class="module-list">
     <van-grid border="{{false}}">
       <van-grid-item content-class="content-bg" wx:for="{{moduleList}}" icon="{{item.icon}}" text="{{item.title}}" />
@@ -14,53 +15,23 @@
     <van-search class="input" value="" shape="round" input-align="center" placeholder="请输入搜索关键词" />
   </view>
   <!-- 列表 -->
-  <view class="personnel-list">
-    <view class="item">
+  <view wx:if="{{subjectList.length}}" class="personnel-list">
+    <view wx:for="{{subjectList}}" wx:for-index="idx" wx:for-item="item" data-id="{{item.id}}" class="item" bindtap="toDetail">
       <view class="head-portrait">
-        <!-- <van-circle value="{{30}}" size="{{72}}" /> -->
-        <image class="img" src="" />
+        <custom-progress src="{{headPortrait[item.gender]}}" isPortrait per="{{66}}" r="{{54}}"></custom-progress>
       </view>
       <view class="info">
          <view class="title">
-            <text class="name">马丽丽</text><text class="gender">女</text><text class="age">54岁</text>
+            <text class="name">{{item.name}}</text><text class="gender">{{gender[item.gender]}}</text><text class="age">{{item.age}}岁</text>
          </view>
          <view class="other">
-            1236123<text class="line">|</text>12天
+            {{item.medical_record}}<text class="line">|</text>12天
          </view>
       </view>
       <van-icon class="arrow" name="arrow" />
     </view>
-
-     <view class="item">
-      <view class="head-portrait">
-        <!-- <van-circle value="{{30}}" size="{{72}}" /> -->
-        <image class="img" src="" />
-      </view>
-      <view class="info">
-         <view class="title">
-            <text class="name">马丽丽</text><text class="gender">女</text><text class="age">54岁</text>
-         </view>
-         <view class="other">
-            1236123<text class="line">|</text>12天
-         </view>
-      </view>
-      <van-icon class="arrow" name="arrow" />
-    </view>
-
-     <view class="item">
-      <view class="head-portrait">
-        <!-- <van-circle value="{{30}}" size="{{72}}" /> -->
-        <image class="img" src="" />
-      </view>
-      <view class="info">
-         <view class="title">
-            <text class="name">马丽丽</text><text class="gender">女</text><text class="age">54岁</text>
-         </view>
-         <view class="other">
-            1236123<text class="line">|</text>12天
-         </view>
-      </view>
-      <van-icon class="arrow" name="arrow" />
-    </view>
+     
   </view>
+
+  <van-empty wx:else image="search" description="暂无数据" />
 </view>

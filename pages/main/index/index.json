@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "首页",
   "navigationBarBackgroundColor": "#67C23A",
-  "navigationBarTextStyle":"white"
+  "navigationBarTextStyle":"white",
+  "usingComponents": {
+    "custom-progress": "/components/progress/progress"
+  }
 }

@@ -23,7 +23,7 @@
   flex: 1;
 }
 .personnel-list {
-  padding: 0 32rpx;
+  padding: 0 16px;
 }
 .personnel-list .item {
   display: flex;
@@ -43,6 +43,7 @@
 }
 .personnel-list .item .info {
   flex: 1;
+  margin-left: 20rpx;
 }
 .personnel-list .item .info .title .name {
   font-size: 34rpx;

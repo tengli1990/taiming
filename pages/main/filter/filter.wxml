@@ -1,3 +1,39 @@
 <view class="main-filter">
-    综合筛选
+  <view class="filter-list">
+    <view class="item">
+      <view class="title">样本来源：</view>
+      <view class="content">
+        <view class="form-select">
+          <text class="placeholder">xxx医院，xxx人员</text>
+          <van-icon name="arrow-down" />
+        </view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="title">收样日期：</view>
+      <view class="content">
+        <view class="form-radio">
+          <view class="tag">全部</view>
+          <view class="tag">本月</view>
+          <view class="tag">上个月</view>
+          <view class="tag">最近3个月</view>
+          <view class="tag">最近半年</view>
+          <view class="tag">自定义</view>
+        </view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="title">数据情况：</view>
+      <view class="content">
+        <view class="form-radio">
+          <view class="tag">待补充</view>
+          <view class="tag">完善</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="filter-operation" >
+    <van-button type="primary" block>确定</van-button>
+  </view>
 </view>

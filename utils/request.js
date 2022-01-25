@@ -6,30 +6,36 @@ const request = (options) => {
 
   if (options.loading) {
     wx.showLoading({
-      title: '加载中...',
+      title: options.loadingText || '加载中...',
     });
   }
   return new Promise((resolve, reject) => {
     const accessToken = wx.getStorageSync('accessToken')
 
-    const config = {
-      method: 'GET',
-      dataType: 'json',
-      ...options,
-      url: baseURL + options.url,
-      headers: {
-        'content-type': 'application/json;charset=utf-8',
-        'Authorization': `Bearer ${accessToken}`,
-        ...options.headers
-      }
+    if(options.checkToken && !accessToken){
+      wx.redirectTo({
+        url:'/pages/user/login/login'
+      })
+      return
     }
     wx.request({
-      ...config,
-      success: (res)=>resolve(res.data),
-      fail: reject,
+      method: 'GET',
+      ...options,
+      url: baseURL + options.url,
+      header: {
+        'content-type': 'application/json; charset=utf-8',
+        'Authorization': `Bearer ${accessToken}`,
+        ...options.header
+      },
+      success: (res) => resolve(res.data),
+      fail: function (err) {
+        console.log(11111,err)
+      },
       complete: info => {
-        if (options.needLoading) {
-          wx.hideLoading();
+        if (options.loading) {
+          setTimeout(() =>{
+            wx.hideLoading();
+          },500)
         }
       }
     })
