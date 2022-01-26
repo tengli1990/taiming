@@ -27,6 +27,9 @@
     "van-uploader": "@vant/weapp/uploader/index",
     "van-switch": "@vant/weapp/switch/index",
     "van-dialog": "@vant/weapp/dialog/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-picker": "@vant/weapp/picker/index",
     "md-field": "/components/field/field"
   }
 }

@@ -41,12 +41,14 @@ export const uploadSubjectPicture = (data)=>{
   })
 }
 
-// 删除图片接口
-export const removeSubjectPic = (data) => {
+/**
+ * @module filter 筛选
+ */
+
+// 获取收样人员列表
+export const getRoleDoctorList = (data) => {
   return request({
-    url: ``,
-    method: '',
-    loading: true,
+    url:'/role/doctor/list',
     data
   })
 }

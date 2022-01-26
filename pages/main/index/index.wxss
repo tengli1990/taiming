@@ -19,6 +19,9 @@
   font-size: 32rpx;
   color: #686868;
 }
+.search-box .multiple.filter {
+  color: #07c160;
+}
 .search-box .input {
   flex: 1;
 }

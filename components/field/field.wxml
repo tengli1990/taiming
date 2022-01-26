@@ -2,7 +2,7 @@
   <view class="m-field-header">
     <view class="m-field-info">
       <view class="m-field-title">{{title}}</view>
-      <!-- <view class="m-field-brief">{{brief}}</view> -->
+      <view class="m-field-brief" wx:if="{{brief}}">{{brief}}</view>
     </view>
   </view>
   <view class="m-field-body">

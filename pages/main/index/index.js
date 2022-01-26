@@ -6,18 +6,22 @@ Page({
   data: {
     moduleList: [
       {
+        key: 0,
         icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%201%402x.png',
         title: '寄样'
       },
       {
+        key: 1,
         icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%202%402x.png',
         title: '物流'
       },
       {
+        key: 2,
         icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%203%402x.png',
         title: '建档'
       },
       {
+        key: 3,
         icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%204%402x.png',
         title: '收样品'
       }
@@ -33,7 +37,16 @@ Page({
       2: '女'
     },
     emptyIcon: 'search',
-    subjectList: []
+    subjectList: [],
+    searchParams: {
+      source:'',
+      department: '',
+      status: '',
+      sample_received_date_start: '',
+      sample_received_date_end: ''
+    },
+    isFilter: false,
+    refresh: true,
   },
   // 事件处理函数
   bindViewTap() {
@@ -41,20 +54,33 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad() {
-    this.getList()
+  onShow() {
+    this.setData({
+      isFilter: false
+    })
+    for (let key in this.data.searchParams) {
+      if (this.data.searchParams[key] !== '') {
+        this.setData({
+          isFilter: true
+        })
+      }
+    }
+    if (this.data.refresh) {
+      this.getList()
+    }
   },
   // 跳转到筛选
   toFilterPage() {
-    console.log(111)
+    console.log(JSON.stringify(this.data.searchParams))
     wx.navigateTo({
-      url: '../filter/filter'
+      url: `../filter/filter?params=${JSON.stringify(this.data.searchParams)}`
     })
   },
+
   // 获取列表接口
   getList() {
-    const params = {}
-    getSubjectList(params).then(res => {
+    console.log(this.data.searchParams)
+    getSubjectList(this.data.searchParams).then(res => {
       if (res.error_code !== 0) {
         return
       }

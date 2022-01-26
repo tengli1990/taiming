@@ -1,6 +1,6 @@
 .filter-list .item {
   display: flex;
-  padding: 24rpx 32rpx;
+  padding: 19rpx 32rpx;
   align-items: start;
   border-bottom: 1rpx solid rgba(206, 206, 206, 0.3);
 }
@@ -16,28 +16,48 @@
   padding: 12rpx 0;
   display: flex;
 }
-.filter-list .item .form-select .placeholder {
+.filter-list .item .form-select input {
   flex: 1;
-  color: #ccc;
   font-size: 28rpx;
 }
 .filter-list .item .form-radio {
   display: flex;
   flex-wrap: wrap;
   margin-left: -32rpx;
-  margin-top: -32rpx;
+  margin-top: -26rpx;
 }
 .filter-list .item .form-radio .tag {
   min-width: 100rpx;
   padding: 0 24rpx;
+  font-size: 26rpx;
   text-align: center;
   border: 1rpx solid #f2f2f2;
   border-radius: 100rpx;
-  line-height: 60rpx;
-  margin-left: 32rpx;
+  line-height: 50rpx;
+  margin-left: 24rpx;
   margin-top: 32rpx;
+}
+.filter-list .item .form-radio .tag.selected {
+  color: #07c160;
+  border-color: #07c160;
 }
 .filter-operation {
   margin-top: 50rpx;
   padding: 0 32rpx;
+}
+.custom-select-date {
+  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+.custom-select-date .slpit {
+  padding: 0 20rpx;
+}
+.custom-select-date .time-input {
+  flex: 1;
+  border: 1px solid #f2f2f2;
+  padding: 5px;
+  text-align: center;
+  border-radius: 100rpx;
 }

@@ -3,8 +3,8 @@
     <view class="item">
       <view class="title">样本来源：</view>
       <view class="content">
-        <view class="form-select">
-          <text class="placeholder">xxx医院，xxx人员</text>
+        <view class="form-select" bindtap="sampleSourceOpen">
+          <input type="text" disabled placeholder="请选择xxx" model:value="{{sourceValue}}" />
           <van-icon name="arrow-down" />
         </view>
       </view>
@@ -13,12 +13,20 @@
       <view class="title">收样日期：</view>
       <view class="content">
         <view class="form-radio">
-          <view class="tag">全部</view>
-          <view class="tag">本月</view>
-          <view class="tag">上个月</view>
-          <view class="tag">最近3个月</view>
-          <view class="tag">最近半年</view>
-          <view class="tag">自定义</view>
+          <block wx:for="{{dateOptions}}" wx:key="value" wx:for-item="item">
+            <view class="tag {{item.value === params.sample_received_date ? 'selected':''}}" data-field="sample_received_date" data-value="{{item.value}}" bindtap="onSelected">
+              {{item.label}}
+            </view>
+          </block>
+        </view>
+        <view class="custom-select-date" wx:if="{{params.sample_received_date == 5}}">
+          <view class="time-input start">
+            <input disabled bindtap="openSelectDate" data-type="start" model:value="{{sample_received_date_start}}" placeholder="请输入开始日期" />
+          </view>
+          <view class="slpit">-</view>
+          <view class="time-input end">
+            <input disabled bindtap="openSelectDate" data-type="end"  model:value="{{sample_received_date_end}}" placeholder="请输入结束日期" />
+          </view>
         </view>
       </view>
     </view>
@@ -26,14 +34,23 @@
       <view class="title">数据情况：</view>
       <view class="content">
         <view class="form-radio">
-          <view class="tag">待补充</view>
-          <view class="tag">完善</view>
+          <block wx:for="{{statusOptions}}" wx:key="value" wx:for-item="item">
+            <view class="tag {{item.value === params.status ? 'selected':''}}" data-field="status" data-value="{{item.value}}" bindtap="onSelected">
+              {{item.label}}
+            </view>
+          </block>
         </view>
       </view>
     </view>
   </view>
-  
-  <view class="filter-operation" >
-    <van-button type="primary" block>确定</van-button>
+  <view class="filter-operation">
+    <van-button type="primary" block bind:click="submitFilterOptions">确定</van-button>
   </view>
+  <van-popup show="{{ showSelectDatePop }}" position="bottom" bind:close="selectDateClose">
+    <van-datetime-picker type="date" value="{{ currentDate }}" bind:confirm="selectDateConfirm" bind:cancel="selectDateCancel" bind:input="onInput" max-date="{{ maxDate }}" formatter="{{ formatter }}" />
+  </van-popup>
+
+  <van-popup show="{{ showSampleSourcePop }}" position="bottom" bind:close="selectSourceClose">
+    <van-picker columns="{{ sampleSourceOptions }}" show-toolbar bind:confirm="confirmSource" bind:cancel="cancelSource" bind:change="onSelectSourceChange" />
+  </van-popup>
 </view>

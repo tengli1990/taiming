@@ -1,13 +1,15 @@
 <view class="main-index">
-  
+
   <view class="module-list">
     <van-grid border="{{false}}">
-      <van-grid-item content-class="content-bg" wx:for="{{moduleList}}" icon="{{item.icon}}" text="{{item.title}}" />
+      <block wx:for="{{moduleList}}" wx:for-index="idx" wx:key="idx">
+      <van-grid-item content-class="content-bg"  icon="{{item.icon}}" text="{{item.title}}" />
+      </block>
     </van-grid>
   </view>
   <!-- 筛选 -->
   <view class="search-box">
-    <view class="multiple" bindtap="toFilterPage">
+    <view class="multiple {{isFilter?'filter':''}}" bindtap="toFilterPage">
       <van-icon name="filter-o" />
       综合筛选
       <van-icon name="arrow-down" />
@@ -16,7 +18,7 @@
   </view>
   <!-- 列表 -->
   <view wx:if="{{subjectList.length}}" class="personnel-list">
-    <view wx:for="{{subjectList}}" wx:for-index="idx" wx:for-item="item" data-id="{{item.id}}" class="item" bindtap="toDetail">
+    <view wx:for="{{subjectList}}" wx:key="id" wx:for-index="idx" wx:for-item="item" data-id="{{item.id}}" class="item" bindtap="toDetail">
       <view class="head-portrait">
         <custom-progress src="{{headPortrait[item.gender]}}" isPortrait per="{{66}}" r="{{54}}"></custom-progress>
       </view>
