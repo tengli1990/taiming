@@ -1,11 +1,11 @@
 
-export const currentEnv = 'dev';
+export const currentEnv = 'test';
 export default {
   dev: {
     baseURL: 'http://collecting-api.timingbio.com/client'
   },
   test: {
-    baseURL: 'http://collecting-api.timingbio.com/sampleReceiving/dev'
+    baseURL: 'https://collecting-api.timingbio.com/client'
   },
   prod: {
     baseURL: 'http://collecting-api.timingbio.com/sampleReceiving/pro'
