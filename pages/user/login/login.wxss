@@ -23,7 +23,7 @@
 }
 .user-login .fill-auto .value {
   margin-left: 30rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #ccc;
 }
 .user-login .fill-auto .success-icon {
@@ -58,4 +58,23 @@
 .user-login .fill-manual .foot-operations {
   margin-top: 40rpx;
   padding: 0 40rpx;
+}
+.launchScreen {
+  z-index: 9999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.launchScreen .main {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: green;
 }

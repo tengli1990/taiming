@@ -1,5 +1,5 @@
 <view class="user-login">
-  <view class="middle-box fill-manual">
+  <view class="middle-box fill-manual" >
     <view class="content">
       <van-field title-width="4em" model:value="{{ mobile }}" clearable label="手机号码" placeholder="请输入手机号码" use-button-slot>
         <van-button slot="button" size="small" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
@@ -19,6 +19,12 @@
         <van-button type="primary" block bindtap="checkWhiteList">确定</van-button>
       </view>
     </view>
+  </view>
+
+  <view class="launchScreen" wx:if="{{launchScreen}}">
+     <view class="main">
+       加载中...
+     </view>
   </view>
 
 

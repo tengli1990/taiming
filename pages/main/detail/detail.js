@@ -80,11 +80,10 @@ Page({
   // 删除图片
   removeFile(event) {
     Dialog.confirm({
-      title: '标题',
-      message: '弹窗内容',
+      title: '提示',
+      message: '确认删除？',
       beforeClose: (action) => new Promise((resolve, reject) => {
         if (action === 'confirm') {
-
           this.data.updateParams.picture_list.forEach((item, index) => {
             if (index === event.detail.index) {
               item.is_deleted = true

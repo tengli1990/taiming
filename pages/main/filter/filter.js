@@ -53,6 +53,10 @@ Page({
     // 数据情况
     statusOptions: [
       {
+        value: '',
+        label: '全部'
+      },
+      {
         value: 0,
         label: '待补充'
       },

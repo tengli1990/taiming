@@ -2,19 +2,34 @@ const app = getApp();
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
 import { getAccessToken, getUserPhoneNumber, sendSmsCode, checkPhoneNumber, checkSmsCode } from '../../../apis/user'
 import { verifyPhoneNumber } from '../../../utils/index'
+import { WECHAT_TOKEN, TOKEN, OPENID } from '../../../utils/constants'
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getPhoneNumber'),
     mobile: '',
     sms: '',
     realSms: '',
-    username: '11',
+    username: '',
     agreementChecked: true,
     // 发送验证码倒计时
     isSending: false,
-    countDown: 60
+    countDown: 60,
+    launchScreen: true
   },
   onLoad: function (options) {
+    //初始化加载，先判断用户登录状态
+    const isLoginedIn = wx.getStorageSync(TOKEN)
+    if (isLoginedIn) {
+      wx.redirectTo({
+        url: '/pages/main/index/index'
+      })
+      return
+    }
+    setTimeout(() => {
+      this.setData({
+        launchScreen: false
+      })
+    },300)
     // 登录
     wx.login({
       success: res => {
@@ -23,10 +38,9 @@ Page({
           if (res.error_code !== 0) {
             return
           }
-          console.log(222, res)
           const { access_token, is_logined, openid } = res.data
-          wx.setStorageSync('wxAccessToken', access_token)
-          wx.setStorageSync('openid', openid)
+          wx.setStorageSync(WECHAT_TOKEN, access_token)
+          wx.setStorageSync(OPENID, openid)
         })
       }
     })
@@ -41,13 +55,13 @@ Page({
   // 获取手机号
   getPhoneNumber(e) {
     const params = {
-      access_token: wx.getStorageSync('wxAccessToken'),
+      access_token: wx.getStorageSync(WECHAT_TOKEN),
       phone_code: e.detail.code
     }
     console.log(params)
     getUserPhoneNumber(params).then(res => {
       console.log(1111, res)
-      if(res.error_code !== 0){
+      if (res.error_code !== 0) {
         return
       }
       const { phone_number } = res.data
@@ -89,10 +103,11 @@ Page({
     this.setData({
       isSending: true,
     })
+    console.log(1111, OPENID)
     this.countDown()
     const params = {
       phone_number: phoneNumber,
-      open_id: wx.getStorageSync('openid')
+      open_id: wx.getStorageSync(OPENID)
     }
     sendSmsCode(params).then(res => {
       if (res.error_code !== 0) {
@@ -112,7 +127,6 @@ Page({
       }
       Toast('登录成功')
       wx.redirectTo({ url: '/pages/main/index/index' })
-      console.log(res)
     })
   },
   // 检查手机号是否在白名单
@@ -120,7 +134,7 @@ Page({
     const params = {
       phone_number: this.data.mobile,
       sms_code: this.data.sms,
-      open_id: wx.getStorageSync('openid')
+      open_id: wx.getStorageSync(OPENID)
     }
     checkSmsCode(params).then(res => {
       if (res.error_code !== 0) {
@@ -128,7 +142,7 @@ Page({
         return
       }
       const { access_token } = res.data
-      wx.setStorageSync('accessToken', access_token)
+      wx.setStorageSync(TOKEN, access_token)
       this.checkPhoneNumber()
     })
 

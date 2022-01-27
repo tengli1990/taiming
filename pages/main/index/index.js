@@ -48,12 +48,6 @@ Page({
     isFilter: false,
     refresh: true,
   },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   onShow() {
     this.setData({
       isFilter: false
@@ -90,6 +84,9 @@ Page({
         subjectList: subject_list
       })
     })
+  },
+  getPerValue(event){
+    console.log(event)
   },
   toDetail(e) {
     console.log()
