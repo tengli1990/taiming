@@ -1,3 +1,4 @@
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
 import { getSubjectList } from '../../../apis/main'
 // 获取应用实例
 const app = getApp()
@@ -76,6 +77,7 @@ Page({
     console.log(this.data.searchParams)
     getSubjectList(this.data.searchParams).then(res => {
       if (res.error_code !== 0) {
+        Toast(res.msg)
         return
       }
       console.log(res)

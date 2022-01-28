@@ -22,6 +22,7 @@ Page({
     }
     getSubjectDetail(params).then(res => {
       if (res.error_code !== 0) {
+        Toast(res.msg)
         return
       }
       const { picture_list, status } = res.data
@@ -119,6 +120,7 @@ Page({
     }
     updateSubjectInfo(params).then(res => {
       if (res.error_code !== 0) {
+        Toast(res.msg)
         return
       }
 

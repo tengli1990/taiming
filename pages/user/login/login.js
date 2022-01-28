@@ -36,6 +36,7 @@ Page({
         const { code } = res
         getAccessToken({ js_code: code }).then(res => {
           if (res.error_code !== 0) {
+            Toast(res.msg)
             return
           }
           const { access_token, is_logined, openid } = res.data
@@ -62,6 +63,7 @@ Page({
     getUserPhoneNumber(params).then(res => {
       console.log(1111, res)
       if (res.error_code !== 0) {
+        Toast(res.msg)
         return
       }
       const { phone_number } = res.data
@@ -103,7 +105,6 @@ Page({
     this.setData({
       isSending: true,
     })
-    console.log(1111, OPENID)
     this.countDown()
     const params = {
       phone_number: phoneNumber,
@@ -111,6 +112,7 @@ Page({
     }
     sendSmsCode(params).then(res => {
       if (res.error_code !== 0) {
+        Toast(res.msg)
         return
       }
       console.log(res.data)

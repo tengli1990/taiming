@@ -1,3 +1,4 @@
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
 import { getRoleDoctorList } from '../../../apis/main'
 import { formatDate } from '../../../utils/index'
 import GetPeriod from "../../../utils/period.js"
@@ -88,6 +89,7 @@ Page({
 
     getRoleDoctorList().then(res => {
       if (res.error_code !== 0) {
+        Toast(res.msg)
         return
       }
       const { doctor_list } = res.data
