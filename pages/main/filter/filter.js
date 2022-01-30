@@ -68,9 +68,8 @@ Page({
     ],
     // 列表参数
     params: {
-      doctor_name: '',
+      doctor_name: '全部',
       doctor_id: '',
-      department: '',
       status: '',
       sample_received_date: '',
       sample_received_date_start: '',
@@ -84,8 +83,12 @@ Page({
   onLoad(opt) {
     this.time = new GetPeriod();
     const params = JSON.parse(opt.params)
+    console.log(params)
     this.setData({
-      params: params,
+      params: {
+        ...this.data.params,
+        ...params
+      },
       sample_received_date_start: params.sample_received_date_start,
       sample_received_date_end: params.sample_received_date_end,
     })
@@ -103,7 +106,7 @@ Page({
 
       console.log()
       this.setData({
-        doctorOptionsDefaultIndex: doctor_list.indexOf(doctor_list.filter(item=>item.id === params.doctor_id)[0])+1,
+        doctorOptionsDefaultIndex: doctor_list.indexOf(doctor_list.filter(item => item.id === params.doctor_id)[0]) + 1,
         sampleSourceOptions: doctorOptions
       })
     })

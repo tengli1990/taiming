@@ -41,13 +41,12 @@ Page({
     subjectList: [],
     searchParams: {
       doctor_id: '',
-      department: '',
       status: '',
       sample_received_date: '',
       sample_received_date_start: '',
       sample_received_date_end: ''
     },
-    fuzzy_search:'',
+    fuzzy_search: '',
     isFilter: false,
     refresh: true,
   },
@@ -55,8 +54,11 @@ Page({
     this.setData({
       isFilter: false
     })
+
+    // 排除不需要依赖判断的字段，如果选择的医生为全部 那么doctor_name的值是存在的所以需要忽略判断
+    const excludesKey = ['doctor_name']
     for (let key in this.data.searchParams) {
-      if (this.data.searchParams[key] !== '') {
+      if (!excludesKey.includes(key) && this.data.searchParams[key] !== '') {
         this.setData({
           isFilter: true
         })
@@ -96,7 +98,7 @@ Page({
       })
     })
   },
-  onSearch(){
+  onSearch() {
     this.getList()
   },
   toDetail(e) {
