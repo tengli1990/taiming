@@ -42,9 +42,7 @@ Page({
     searchParams: {
       doctor_id: '',
       status: '',
-      sample_received_date: '',
-      sample_received_date_start: '',
-      sample_received_date_end: ''
+      sample_received_date: ''
     },
     fuzzy_search: '',
     isFilter: false,
@@ -78,7 +76,7 @@ Page({
 
   // 获取列表接口
   getList() {
-    const { doctor_id, status, sample_received_date_start, sample_received_date_end } = this.data.searchParams
+    const { doctor_id, status, sample_received_date_start = '', sample_received_date_end = '' } = this.data.searchParams
     const params = {
       doctor_id,
       status,
