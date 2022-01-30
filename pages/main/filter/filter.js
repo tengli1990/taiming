@@ -68,11 +68,15 @@ Page({
     ],
     // 列表参数
     params: {
-      source: '',
+      doctor_name: '',
+      doctor_id: '',
       department: '',
       status: '',
       sample_received_date: '',
+      sample_received_date_start: '',
+      sample_received_date_end: ''
     },
+    doctorOptionsDefaultIndex: 1,
     middleDate: '',
     sample_received_date_start: '',
     sample_received_date_end: ''
@@ -84,7 +88,6 @@ Page({
       params: params,
       sample_received_date_start: params.sample_received_date_start,
       sample_received_date_end: params.sample_received_date_end,
-      sourceValue: params.source
     })
 
     getRoleDoctorList().then(res => {
@@ -93,8 +96,15 @@ Page({
         return
       }
       const { doctor_list } = res.data
+      const doctorOptions = [{
+        name: '全部',
+        id: ''
+      }, ...doctor_list]
+
+      console.log()
       this.setData({
-        sampleSourceOptions: doctor_list.map(item => ({ text: item.name }))
+        doctorOptionsDefaultIndex: doctor_list.indexOf(doctor_list.filter(item=>item.id === params.doctor_id)[0])+1,
+        sampleSourceOptions: doctorOptions
       })
     })
   },
@@ -106,11 +116,15 @@ Page({
   sampleSourceClose() {
 
   },
+  // 确定选择收样来源
   confirmSource(event) {
-    const { text } = event.detail.value
-    console.log(event)
+    const { name, id } = event.detail.value
     this.setData({
-      sourceValue: text
+      params: {
+        ...this.data.params,
+        doctor_id: id,
+        doctor_name: name
+      }
     })
     this.cancelSource()
   },
@@ -195,12 +209,12 @@ Page({
     let prevPage = pages[pages.length - 2]
     const sample_received_date_start = this.data.sample_received_date_start
     const sample_received_date_end = this.data.sample_received_date_end
+    console.log(this.data.params)
     prevPage.setData({
       searchParams: {
         ...this.data.params,
         sample_received_date_start,
         sample_received_date_end,
-        source: this.data.sourceValue
       }
     })
 

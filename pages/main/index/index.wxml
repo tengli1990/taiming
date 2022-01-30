@@ -13,7 +13,7 @@
       综合筛选
       <van-icon name="arrow-down" />
     </view>
-    <van-search class="input" value="" shape="round" input-align="center" placeholder="请输入搜索关键词" />
+    <van-search class="input" model:value="{{fuzzy_search}}" bind:search="onSearch" shape="round" input-align="center" placeholder="请输入搜索关键词" />
   </view>
   <!-- 列表 -->
   <view wx:if="{{subjectList.length}}" class="personnel-list">

@@ -22,9 +22,7 @@
   </view>
 
   <view class="launchScreen" wx:if="{{launchScreen}}">
-     <view class="main">
-       加载中...
-     </view>
+     <view class="main"></view>
   </view>
 
 

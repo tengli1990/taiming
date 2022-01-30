@@ -28,9 +28,9 @@ Page({
       }
     ],
     headPortrait: {
-      0: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13455144170%2F1000.jpg', // 未知
-      1: 'https://test-res.kaikeba.com/image/123/20220121172842-96063/FqMBz2DIeQPHWyi4av0hR4E2fHyk.jpeg?imageView2/0/interlace/1/q/70|imageslim', // 男
-      2: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13505141991%2F1000.jpg' // 女
+      0: 'http://static.timingbio.com/frontend/%20u%402x.png', // 未知
+      1: 'http://static.timingbio.com/frontend/%20m%402x.png', // 男
+      2: 'http://static.timingbio.com/frontend/%20f%402x.png' // 女
     },
     gender: {
       0: '未知',
@@ -40,12 +40,14 @@ Page({
     emptyIcon: 'search',
     subjectList: [],
     searchParams: {
-      source:'',
+      doctor_id: '',
       department: '',
       status: '',
+      sample_received_date: '',
       sample_received_date_start: '',
       sample_received_date_end: ''
     },
+    fuzzy_search:'',
     isFilter: false,
     refresh: true,
   },
@@ -74,8 +76,15 @@ Page({
 
   // 获取列表接口
   getList() {
-    console.log(this.data.searchParams)
-    getSubjectList(this.data.searchParams).then(res => {
+    const { doctor_id, status, sample_received_date_start, sample_received_date_end } = this.data.searchParams
+    const params = {
+      doctor_id,
+      status,
+      sample_received_date_start,
+      sample_received_date_end,
+      fuzzy_search: this.data.fuzzy_search
+    }
+    getSubjectList(params).then(res => {
       if (res.error_code !== 0) {
         Toast(res.msg)
         return
@@ -87,8 +96,8 @@ Page({
       })
     })
   },
-  getPerValue(event){
-    console.log(event)
+  onSearch(){
+    this.getList()
   },
   toDetail(e) {
     console.log()

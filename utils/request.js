@@ -1,4 +1,5 @@
 import envConfig, { currentEnv } from '../config/env'
+import { TOKEN } from './constants'
 const app = getApp();
 const request = (options) => {
 
@@ -30,6 +31,8 @@ const request = (options) => {
         const { statusCode } = error
         switch (statusCode) {
           case 401:
+            wx.removeStorageSync(TOKEN);
+            console.log('401')
             wx.reLaunch({
               url: '/pages/user/login/login'
             })

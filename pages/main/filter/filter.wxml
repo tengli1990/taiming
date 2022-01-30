@@ -4,7 +4,7 @@
       <view class="title">样本来源：</view>
       <view class="content">
         <view class="form-select" bindtap="sampleSourceOpen">
-          <input type="text" disabled placeholder="请选择xxx" model:value="{{sourceValue}}" />
+          <input type="text" disabled placeholder="请选择" model:value="{{params.doctor_name}}" />
           <van-icon name="arrow-down" />
         </view>
       </view>
@@ -50,7 +50,8 @@
     <van-datetime-picker type="date" value="{{ currentDate }}" bind:confirm="selectDateConfirm" bind:cancel="selectDateCancel" bind:input="onInput" max-date="{{ maxDate }}" formatter="{{ formatter }}" />
   </van-popup>
 
+
   <van-popup show="{{ showSampleSourcePop }}" position="bottom" bind:close="selectSourceClose">
-    <van-picker columns="{{ sampleSourceOptions }}" show-toolbar bind:confirm="confirmSource" bind:cancel="cancelSource" bind:change="onSelectSourceChange" />
+    <van-picker columns="{{ sampleSourceOptions }}" value-key="name" show-toolbar default-index="{{doctorOptionsDefaultIndex}}" bind:confirm="confirmSource" bind:cancel="cancelSource" />
   </van-popup>
 </view>

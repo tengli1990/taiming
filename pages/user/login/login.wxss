@@ -72,9 +72,9 @@
   background: #fff;
 }
 .launchScreen .main {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
+  width: 150rpx;
+  height: 150rpx;
   overflow: hidden;
-  background: green;
+  background: url("http://static.timingbio.com/frontend/%E9%A3%9E%E4%B9%A620220129-144431.jpg");
+  background-size: 100% 100%;
 }
