@@ -44,6 +44,9 @@ Page({
       status: '',
       sample_received_date: ''
     },
+    page: 1,
+    per_page: 20,
+    totalPage: 1,
     fuzzy_search: '',
     isFilter: false,
     refresh: true,
@@ -60,6 +63,7 @@ Page({
         this.setData({
           isFilter: true
         })
+        this.resetPage()
       }
     }
     if (this.data.refresh) {
@@ -82,7 +86,9 @@ Page({
       status,
       sample_received_date_start,
       sample_received_date_end,
-      fuzzy_search: this.data.fuzzy_search
+      fuzzy_search: this.data.fuzzy_search,
+      page: this.data.page,
+      per_page: this.data.per_page
     }
     getSubjectList(params).then(res => {
       if (res.error_code !== 0) {
@@ -90,13 +96,28 @@ Page({
         return
       }
       console.log(res)
-      const { subject_list } = res.data
+      const { subject_list, current_page, pages } = res.data
       this.setData({
-        subjectList: subject_list
+        totalPage: pages
+      })
+      if (current_page === pages) {
+        this.setData({
+          isLoadedAll: true
+        })
+      }
+      if (current_page === 1) {
+        this.setData({
+          subjectList: subject_list
+        })
+        return
+      }
+      this.setData({
+        subjectList: [...this.data.subjectList, ...subject_list]
       })
     })
   },
   onSearch() {
+    this.resetPage()
     this.getList()
   },
   toDetail(e) {
@@ -105,5 +126,23 @@ Page({
     wx.navigateTo({
       url: `../detail/detail?id=${id}`
     })
+  },
+  resetPage() {
+    this.setData({
+      page: 1
+    })
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 0
+    })
+  },
+  onReachBottom() {
+    if (this.data.page >= this.data.totalPage) {
+      return
+    }
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getList()
   }
 })

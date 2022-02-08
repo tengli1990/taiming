@@ -1,0 +1,3 @@
+page {
+  --switch-on-background-color: #67C23A;
+}

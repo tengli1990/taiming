@@ -30,6 +30,7 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-picker": "@vant/weapp/picker/index",
+    "van-sticky": "@vant/weapp/sticky/index",
     "md-field": "/components/field/field"
   }
 }

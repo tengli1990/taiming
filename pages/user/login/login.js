@@ -29,7 +29,7 @@ Page({
       this.setData({
         launchScreen: false
       })
-    },300)
+    }, 300)
     // 登录
     wx.login({
       success: res => {
@@ -112,7 +112,10 @@ Page({
     }
     sendSmsCode(params).then(res => {
       if (res.error_code !== 0) {
-        Toast(res.msg)
+        Toast({
+          duration: 5000,
+          message: res.msg
+        })
         return
       }
       console.log(res.data)
