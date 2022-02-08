@@ -42,11 +42,14 @@ Page({
     searchParams: {
       doctor_id: '',
       status: '',
-      sample_received_date: ''
+      sample_received_date: '',
+      sample_received_date_end:'',
+      sample_received_date_start:''
     },
     page: 1,
     per_page: 20,
     totalPage: 1,
+    scrollTop:0,
     fuzzy_search: '',
     isFilter: false,
     refresh: true,
@@ -55,18 +58,19 @@ Page({
     this.setData({
       isFilter: false
     })
-
+    
     // 排除不需要依赖判断的字段，如果选择的医生为全部 那么doctor_name的值是存在的所以需要忽略判断
     const excludesKey = ['doctor_name']
     for (let key in this.data.searchParams) {
       if (!excludesKey.includes(key) && this.data.searchParams[key] !== '') {
+        console.log(key)
         this.setData({
           isFilter: true
         })
-        this.resetPage()
       }
     }
     if (this.data.refresh) {
+      this.resetPage()
       this.getList()
     }
   },
@@ -131,12 +135,15 @@ Page({
     this.setData({
       page: 1
     })
+    this.setData({
+      scrollTop: 0
+    })
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 0
     })
   },
-  onReachBottom() {
+  bindscrolltolower() {
     if (this.data.page >= this.data.totalPage) {
       return
     }
