@@ -29,6 +29,11 @@
 .search-box .input {
   flex: 1;
 }
+.search-box .refresh {
+  padding-right: 40rpx;
+  color: #666;
+  text-align: center;
+}
 .personnel-list {
   padding: 0 16px;
 }

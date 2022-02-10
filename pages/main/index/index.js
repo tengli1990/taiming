@@ -43,22 +43,23 @@ Page({
       doctor_id: '',
       status: '',
       sample_received_date: '',
-      sample_received_date_end:'',
-      sample_received_date_start:''
+      sample_received_date_end: '',
+      sample_received_date_start: ''
     },
     page: 1,
     per_page: 20,
     totalPage: 1,
-    scrollTop:0,
+    scrollTop: 0,
     fuzzy_search: '',
     isFilter: false,
     refresh: true,
+    animationData: null
   },
   onShow() {
     this.setData({
       isFilter: false
     })
-    
+
     // 排除不需要依赖判断的字段，如果选择的医生为全部 那么doctor_name的值是存在的所以需要忽略判断
     const excludesKey = ['doctor_name']
     for (let key in this.data.searchParams) {
@@ -131,6 +132,7 @@ Page({
       url: `../detail/detail?id=${id}`
     })
   },
+  // 重制页面
   resetPage() {
     this.setData({
       page: 1
@@ -143,6 +145,7 @@ Page({
       duration: 0
     })
   },
+  // 上啦加载
   bindscrolltolower() {
     if (this.data.page >= this.data.totalPage) {
       return
@@ -150,6 +153,33 @@ Page({
     this.setData({
       page: ++this.data.page
     })
+    this.getList()
+  },
+  // 点击刷新列表
+  onReplay() {
+    // 顺时针旋转实例
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease'
+    })
+    // 逆时针旋转实例
+    var animation1 = wx.createAnimation({
+      duration: 10,
+      timingFunction: 'ease'
+    })
+
+    animation.rotate(450).step()
+    this.setData({
+      animationData: animation.export()
+    })
+    setTimeout(function () {
+      animation1.rotate(0).step()
+      this.setData({
+        animationData: animation1.export()
+      })
+    }.bind(this), 1300);
+
+    this.resetPage()
     this.getList()
   }
 })

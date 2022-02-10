@@ -15,6 +15,9 @@
         <van-icon name="arrow-down" />
       </view>
       <van-search class="input" model:value="{{fuzzy_search}}" bind:search="onSearch" shape="round" input-align="center" placeholder="请输入搜索关键词" />
+      <view class="refresh">
+          <van-icon animation='{{animationData}}' bind:click="onReplay" name="replay" />
+      </view>
     </view>
   </view>
   <!-- 列表 -->
