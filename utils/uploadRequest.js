@@ -11,6 +11,7 @@ const uploadRequest = (options) => {
       url: baseURL + options.url,
       filePath: options.filePath, // 上传文件
       name: 'picture',
+      formData: options.formData || {},
       header: {
         'Authorization': `Bearer ${accessToken}`,
       },

@@ -25,19 +25,21 @@ export const updateSubjectInfo = (data, header) => {
     url: `/subject/${data.id}`,
     method: 'PUT',
     loading: true,
-    loadingText:'提交中...',
+    loadingText: '提交中...',
     data,
     header
   })
 }
 
 // 上传图片接口
-export const uploadSubjectPicture = (data)=>{
-  console.log(data)
+export const uploadSubjectPicture = ({ filePath, subject_id }) => {
   return uploadRequest({
-    url:'/subject/picture',
+    url: '/subject/picture',
     method: 'POST',
-    filePath: data.filePath
+    filePath: filePath,
+    formData: {
+      subject_id
+    }
   })
 }
 
@@ -48,7 +50,7 @@ export const uploadSubjectPicture = (data)=>{
 // 获取收样人员列表
 export const getRoleDoctorList = (data) => {
   return request({
-    url:'/role/doctor/list',
+    url: '/role/doctor/list',
     data
   })
 }
