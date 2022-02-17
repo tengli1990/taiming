@@ -8,43 +8,44 @@
       </van-grid>
     </view>
     <!-- 筛选 -->
-    <view class="search-box">
-      <view class="multiple {{isFilter?'filter':''}}" bindtap="toFilterPage">
-        <van-icon name="filter-o" />
-        综合筛选
-        <van-icon name="arrow-down" />
-      </view>
-      <van-search class="input" model:value="{{fuzzy_search}}" bind:search="onSearch" shape="round" input-align="center" placeholder="请输入搜索关键词" />
-      <view class="refresh">
+    <van-sticky>
+      <view class="search-box">
+        <view class="multiple {{isFilter?'filter':''}}" bindtap="toFilterPage">
+          <van-icon name="filter-o" />
+          综合筛选
+          <van-icon name="arrow-down" />
+        </view>
+        <van-search class="input" model:value="{{fuzzy_search}}" bind:search="onSearch" shape="round" input-align="center" placeholder="请输入搜索关键词" />
+        <view class="refresh">
           <van-icon animation='{{animationData}}' bind:click="onReplay" name="replay" />
+        </view>
       </view>
-    </view>
+    </van-sticky>
   </view>
   <!-- 列表 -->
-  <scroll-view class="scroll-box" scroll-y style="height:calc(100vh - 350rpx)" scroll-top="{{scrollTop}}" bindscrolltolower="bindscrolltolower">
-    <view wx:if="{{subjectList.length}}" class="personnel-list">
-      <view wx:for="{{subjectList}}" wx:key="id" wx:for-index="idx" wx:for-item="item" data-id="{{item.id}}" class="item" bindtap="toDetail">
-        <view class="head-portrait">
-          <custom-progress draw="{{'draw'+item.id}}" src="{{headPortrait[item.gender]}}" isPortrait per="{{item.collecting_process}}" r="{{54}}"></custom-progress>
-        </view>
-        <view class="info">
-          <view class="title">
-            <text class="name">{{item.name}}</text>
-            <text class="gender">{{gender[item.gender]}}</text>
-            <text class="age">{{item.age}}岁</text>
-          </view>
-          <view class="other">
-            {{item.medical_record}}
-            <block wx:if="{{item.collecting_days}}">
-              <text class="line">|</text>
-              {{item.collecting_days}}天
-            </block>
-          </view>
-        </view>
-        <van-icon class="arrow" name="arrow" />
+  <!-- <scroll-view class="scroll-box" scroll-y style="height:calc(100vh - 350rpx)" scroll-top="{{scrollTop}}" bindscrolltolower="bindscrolltolower"> -->
+  <view wx:if="{{subjectList.length}}" class="personnel-list">
+    <view wx:for="{{subjectList}}" wx:key="id" wx:for-index="idx" wx:for-item="item" data-id="{{item.id}}" class="item" bindtap="toDetail">
+      <view class="head-portrait">
+        <custom-cycle draw="{{'draw'+item.id}}" src="{{headPortrait[item.gender]}}" isPortrait per="{{item.collecting_process}}" r="{{54}}"></custom-cycle>
       </view>
-      <view class="end" wx:if="{{page>=totalPage}}">已经到底了～</view>
+      <view class="info">
+        <view class="title">
+          <text class="name">{{item.name}}</text>
+          <text class="gender">{{gender[item.gender]}}</text>
+          <text class="age">{{item.age}}岁</text>
+        </view>
+        <view class="other">
+          {{item.medical_record}}
+          <block wx:if="{{item.collecting_days}}">
+            <text class="line">|</text>
+            {{item.collecting_days}}天
+          </block>
+        </view>
+      </view>
+      <van-icon class="arrow" name="arrow" />
     </view>
-    <van-empty wx:else image="search" description="暂无数据" />
-  </scroll-view>
+    <view class="end" wx:if="{{page>=totalPage}}">已经到底了～</view>
+  </view>
+  <van-empty wx:else image="search" description="暂无数据" />
 </view>

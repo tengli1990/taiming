@@ -3,6 +3,7 @@
   "navigationBarBackgroundColor": "#67C23A",
   "navigationBarTextStyle":"white",
   "usingComponents": {
-    "custom-progress": "/components/progress/progress"
+    "custom-progress": "/components/progress/progress",
+    "custom-cycle": "/components/cycle/cycle"
   }
 }

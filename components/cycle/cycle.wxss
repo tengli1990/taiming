@@ -1,0 +1,50 @@
+/* components/progress/progress.wxss */
+.circle_box,
+.circle_draw {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.circle_draw.p3{
+  background:url("http://static.timingbio.com/collected_sample_wx_app/process_icon/process1-3.png") no-repeat;
+  background-size:100% 100%
+}
+.circle_draw.p6{
+  background:url("http://static.timingbio.com/collected_sample_wx_app/process_icon/process2-3.png") no-repeat;
+  background-size:100% 100%
+}
+.circle_draw.p10{
+  background:url("http://static.timingbio.com/collected_sample_wx_app/process_icon/process3-3.png") no-repeat;
+  background-size:100% 100%
+}
+
+.circle_bg {
+  z-index: 0;
+  position: absolute;
+}
+
+.circle_box {
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width:108rpx;
+  height:108rpx;
+}
+
+.circle_txt {
+  position: absolute;
+  font-size: 28rpx;
+}
+
+.circle_image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  width:88rpx;
+  height:88rpx;
+  border-radius: 50%;
+}

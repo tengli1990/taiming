@@ -1,0 +1,5 @@
+<view class="circle_box" style="width:{{size}}px;height:{{size}}px">
+  <view class="circle_draw p{{processImage[per]}}"></view>
+  <image wx:if="{{isPortrait}}" class="circle_image" src="{{src}}"></image>
+  <text wx:else class='circle_txt'>{{txt}}%</text>
+</view>

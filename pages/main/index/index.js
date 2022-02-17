@@ -8,29 +8,29 @@ Page({
     moduleList: [
       {
         key: 0,
-        icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%201%402x.png',
+        icon: 'http://static.timingbio.com/collected_sample_wx_app/index_icon/lab.png',
         title: '寄样'
       },
       {
         key: 1,
-        icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%202%402x.png',
+        icon: 'http://static.timingbio.com/collected_sample_wx_app/index_icon/car.png',
         title: '物流'
       },
       {
         key: 2,
-        icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%203%402x.png',
+        icon: 'http://static.timingbio.com/collected_sample_wx_app/index_icon/doc.png',
         title: '建档'
       },
       {
         key: 3,
-        icon: 'http://static.timingbio.com/frontend/%20%E7%94%BB%E6%9D%BF%20%E2%80%93%204%402x.png',
+        icon: 'http://static.timingbio.com/collected_sample_wx_app/index_icon/photo.png',
         title: '收样品'
       }
     ],
     headPortrait: {
-      0: 'http://static.timingbio.com/frontend/%20u%402x.png', // 未知
-      1: 'http://static.timingbio.com/frontend/%20m%402x.png', // 男
-      2: 'http://static.timingbio.com/frontend/%20f%402x.png' // 女
+      0: 'http://static.timingbio.com/collected_sample_wx_app/gender_icon/unknow.png', // 未知
+      1: 'http://static.timingbio.com/collected_sample_wx_app/gender_icon/male.png', // 男
+      2: 'http://static.timingbio.com/collected_sample_wx_app/gender_icon/female.png' // 女
     },
     gender: {
       0: '未知',
@@ -47,7 +47,7 @@ Page({
       sample_received_date_start: ''
     },
     page: 1,
-    per_page: 20,
+    per_page: 7,
     totalPage: 1,
     scrollTop: 0,
     fuzzy_search: '',
@@ -146,7 +146,7 @@ Page({
     })
   },
   // 上啦加载
-  bindscrolltolower() {
+  onReachBottom() {
     if (this.data.page >= this.data.totalPage) {
       return
     }
