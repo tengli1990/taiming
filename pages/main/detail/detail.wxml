@@ -1,6 +1,6 @@
 <view class="main-detail">
   <md-field title="原始凭证">
-    <van-uploader max-count="15" multiple file-list="{{ fileList }}" bind:delete="removeFile" accept="image" use-before-read use-after-read bind:before-read="beforeRead" bind:after-read="afterRead" deletable />
+    <van-uploader max-count="30" multiple file-list="{{ fileList }}" bind:delete="removeFile" accept="image" use-before-read use-after-read bind:before-read="beforeRead" bind:after-read="afterRead" deletable />
   </md-field>
   <van-cell title="收集完成">
     <van-switch checked="{{ checked }}" size="24px" bind:change="onSwitchChange" />

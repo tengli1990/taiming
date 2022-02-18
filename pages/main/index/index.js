@@ -47,7 +47,7 @@ Page({
       sample_received_date_start: ''
     },
     page: 1,
-    per_page: 7,
+    per_page: 20,
     totalPage: 1,
     scrollTop: 0,
     fuzzy_search: '',

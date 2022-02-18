@@ -49,41 +49,41 @@ Page({
     let uploadPromiseTask = [];
     let uploadIndex = 0
     for (let i = 0; i < file.length; i++) {
-      // wx.compressImage({
-      //   src: file[i].url, // 图片路径
-      //   quality: 80, // 压缩质量
-      //   success: function (res) {
-      //     uploadPromiseTask.push(that.uploadFile(res.tempFilePath));
-      //     uploadIndex++
-      //     if (file.length === uploadIndex) {
-      //       startUpload()
-      //     }
-      //   }
-      // })
-      uploadPromiseTask.push(this.uploadFile(file[i].url));
-    }
-    // function startUpload() {
-    Promise.all(uploadPromiseTask)
-      .then(res => {
-        const currentUpload = []
-        for (let item of res) {
-          currentUpload.push(item.data)
+      wx.compressImage({
+        src: file[i].url, // 图片路径
+        quality: 60, // 压缩质量
+        success: function (res) {
+          uploadPromiseTask.push(that.uploadFile(res.tempFilePath));
+          uploadIndex++
+          if (file.length === uploadIndex) {
+            startUpload()
+          }
         }
-        that.setData({
-          fileList: that.data.fileList.concat(currentUpload)
-        })
-        that.data.updateParams.picture_list = that.data.fileList
-        that.updateSubjectInfo()
-        wx.hideLoading();
       })
-      .catch(error => {
-        wx.hideLoading();
-        wx.showToast({
-          title: '上传失败！',
-          icon: 'none'
+      // uploadPromiseTask.push(this.uploadFile(file[i].url));
+    }
+    function startUpload() {
+      Promise.all(uploadPromiseTask)
+        .then(res => {
+          const currentUpload = []
+          for (let item of res) {
+            currentUpload.push(item.data)
+          }
+          that.setData({
+            fileList: that.data.fileList.concat(currentUpload)
+          })
+          that.data.updateParams.picture_list = that.data.fileList
+          that.updateSubjectInfo()
+          wx.hideLoading();
+        })
+        .catch(error => {
+          wx.hideLoading();
+          wx.showToast({
+            title: '上传失败！',
+            icon: 'none'
+          });
         });
-      });
-    // }
+    }
   },
   // 上传单张图片
   uploadFile(uploadFile) {
