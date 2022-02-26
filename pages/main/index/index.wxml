@@ -3,7 +3,7 @@
     <view class="module-list">
       <van-grid border="{{false}}">
         <block wx:for="{{moduleList}}" wx:for-index="idx" wx:key="idx">
-          <van-grid-item content-class="content-bg" icon="{{item.icon}}" text="{{item.title}}" />
+          <van-grid-item link-type="{{item.type}}"  url="{{item.url}}" content-class="content-bg" icon="{{item.icon}}" text="{{item.title}}" />
         </block>
       </van-grid>
     </view>
@@ -23,7 +23,6 @@
     </van-sticky>
   </view>
   <!-- 列表 -->
-  <!-- <scroll-view class="scroll-box" scroll-y style="height:calc(100vh - 350rpx)" scroll-top="{{scrollTop}}" bindscrolltolower="bindscrolltolower"> -->
   <view wx:if="{{subjectList.length}}" class="personnel-list">
     <view wx:for="{{subjectList}}" wx:key="id" wx:for-index="idx" wx:for-item="item" data-id="{{item.id}}" class="item" bindtap="toDetail">
       <view class="head-portrait">
@@ -42,6 +41,7 @@
             {{item.collecting_days}}天
           </block>
         </view>
+       
       </view>
       <van-icon class="arrow" name="arrow" />
     </view>

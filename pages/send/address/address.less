@@ -1,0 +1,62 @@
+.send-address {
+  background: #f6f7f8;
+  min-height: 100vh;
+  .address-list {
+    .item {
+      padding: var(--g-padding-x);
+      background: #fff;
+      font-size: 32rpx;
+      margin-top: 32rpx;
+      .name {
+        padding-top: 16rpx;
+        font-size: 32xrpx;
+        .phone {
+          margin-left: 16rpx;
+        }
+      }
+      .place {
+        font-size: 32rpx;
+        padding-top: 8rpx;
+        padding-bottom: 16rpx;
+        color: var(--g-grey-color);
+        line-height: 48rpx;
+        .default {
+          display: inline-block;
+          font-size: 24rpx;
+          padding: 0 16rpx;
+          background: black;
+          vertical-align: top;
+          color: #fff;
+          margin-right: 8rpx;
+        }
+      }
+
+      .operations {
+        display: flex;
+        margin-top: 16rpx;
+        padding: 24rpx 0;
+        border-top: 1px solid #f2f2f2;
+        align-items: center;
+        .radio-box {
+          flex: 1;
+        }
+        .radio-label {
+          font-size: 32rpx;
+        }
+
+        .edit,
+        .delete {
+          display: inline-block;
+          vertical-align: top;
+          border: 1px solid #f2f2f2;
+          padding: 8rpx 24rpx;
+          margin-left: 32rpx;
+        }
+      }
+    }
+
+    & :first-child.item{
+      margin-top: 0;
+    }
+  }
+}

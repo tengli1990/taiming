@@ -1,3 +1,12 @@
 page {
-  --switch-on-background-color: #67C23A;
+  --switch-on-background-color: #67c23a;
+  --cell-text-color: #666;
+  --cell-value-color: #666;
+  --grid-item-content-padding: 32rpx 16rpx;
+  --grid-item-icon-size: 52rpx;
+  --grid-item-text-font-size: 24rpx;
+  --tabs-bottom-bar-color: #67c23a;
+  --g-padding-x: 0 32rpx;
+  --g-grey-color: #666;
+  --g-background-color: #f6f7f8;
 }

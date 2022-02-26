@@ -1,0 +1,43 @@
+<view class="send-index">
+  <md-layout footerFixed>
+    <view>
+      <view class="address">
+        <view class="item" bindtap="selectAddress">
+          <view class="icon">寄</view>
+          <view class="info">
+            <view class="main">
+              <view class="name">寄送人，136xxxx1111</view>
+              <view class="desc">浙江省ssss医院</view>
+            </view>
+            <view class="arrow">
+              <van-icon name="arrow" />
+            </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="icon">收</view>
+          <view class="info">
+            <view class="main">
+              <view class="name">寄送人，136xxxx1111</view>
+              <view class="desc">浙江省ssss医院</view>
+            </view>
+            <view class="arrow"></view>
+          </view>
+        </view>
+      </view>
+      <view class="form">
+        <van-cell title="期望上门时间" is-link value="内容" />
+        <van-field value="{{value}}" label="物品信息" type="number" placeholder="请输入一组实验样本的数量" input-align="right" use-button-slot>
+          <view slot="button">例</view>
+        </van-field>
+        <van-cell title="付款方式" value="到付" />
+        <md-field title="物品照片">
+          <van-uploader max-count="30" multiple file-list="{{ fileList }}" bind:delete="removeFile" accept="image" use-before-read use-after-read bind:before-read="beforeRead" bind:after-read="afterRead" deletable />
+        </md-field>
+      </view>
+    </view>
+    <view slot="footer">
+      <van-button type="primary" block>下单</van-button>
+    </view>
+  </md-layout>
+</view>

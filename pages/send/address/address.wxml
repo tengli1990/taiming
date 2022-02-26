@@ -1,0 +1,49 @@
+<view class="send-address">
+  <md-layout footerFixed>
+    <view class="body">
+      <van-radio-group value="{{ defaultValue }}" bind:change="setDefault">
+        <view class="address-list">
+          <view class="item">
+            <view class="name">
+              <text class="username">李腾</text>
+              <text class="phone">158123***1123</text>
+            </view>
+            <view class="place">
+              <!-- <text class="default">默认</text> -->
+              浙江省时尚大方xxxxx
+            </view>
+            <view class="operations">
+              <van-radio class="radio-box" label-class="radio-label" name="1" icon-size="32rpx">
+                设为默认
+              </van-radio>
+              <text class="edit" bindtap="setAddress">编辑</text>
+              <text class="delete" bindtap="deleteAddress">删除</text>
+            </view>
+          </view>
+          <view class="item">
+            <view class="name">
+              <text class="username">李腾</text>
+              <text class="phone">158123***1123</text>
+            </view>
+            <view class="place">
+              <!-- <text class="default">默认</text> -->
+              浙江省时尚大方xxxxx
+            </view>
+            <view class="operations">
+              <van-radio class="radio-box" label-class="radio-label" name="2" icon-size="32rpx">
+                设为默认
+              </van-radio>
+              <text class="edit">编辑</text>
+              <text class="delete">删除</text>
+            </view>
+          </view>
+        </view>
+      </van-radio-group>
+    </view>
+    <view slot="footer">
+      <van-button type="primary" block>新增地址</van-button>
+    </view>
+  </md-layout>
+  <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
+</view>

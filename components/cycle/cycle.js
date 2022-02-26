@@ -55,33 +55,7 @@ Component({
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () {
-      // const _this = this;
-      // //获取屏幕宽度
-      // wx.getSystemInfo({
-      //   success: function (res) {
-      //     _this.setData({
-      //       screenWidth: res.windowWidth
-      //     });
-      //   },
-      // });
-
-      // //初始化
-      // const el = _this.data.draw; //画板元素
-      // const per = _this.data.per; //圆形进度
-      // const r = Number(_this.data.r); //圆形半径
-
-      // _this.setData({
-      //   step: (2 * Number(_this.data.per)) / 100,
-      //   txt: _this.data.per
-      // });
-
-
-      // //获取屏幕宽度(并把真正的半径px转成rpx)
-      // let rpx = (_this.data.screenWidth / 750) * r;
-      // //计算出画板大小
-      // this.setData({
-      //   size: rpx * 2
-      // });
+     
     }
   }
 })

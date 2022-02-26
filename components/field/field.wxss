@@ -1,5 +1,5 @@
 .m-field {
-  padding: 30rpx 30rpx 0;
+  padding: 30rpx var(--cell-horizontal-padding, 16px) 0;
   background-color: #fff;
   border: none;
 }
@@ -15,9 +15,8 @@
   border-bottom: 1px solid #eaeaea;
 }
 .m-field-title {
-  font-size: 14px;
-  color: #323233;
-  font-weight: 500;
+  font-size: var(--cell-font-size, 14px);
+  color: var(--cell-text-color);
   line-height: 1;
 }
 .m-field-brief {

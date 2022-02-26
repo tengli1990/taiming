@@ -8,11 +8,15 @@ Page({
     moduleList: [
       {
         key: 0,
+        type:'navigateTo',
+        url: '/pages/send/index/index',
         icon: 'http://static.timingbio.com/collected_sample_wx_app/index_icon/lab.png',
         title: '寄样'
       },
       {
         key: 1,
+        type:'navigateTo',
+        url: '/pages/logistics/index/index',
         icon: 'http://static.timingbio.com/collected_sample_wx_app/index_icon/car.png',
         title: '物流'
       },

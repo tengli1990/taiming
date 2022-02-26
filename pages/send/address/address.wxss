@@ -1,0 +1,57 @@
+.send-address {
+  background: #f6f7f8;
+  min-height: 100vh;
+}
+.send-address .address-list .item {
+  padding: var(--g-padding-x);
+  background: #fff;
+  font-size: 32rpx;
+  margin-top: 32rpx;
+}
+.send-address .address-list .item .name {
+  padding-top: 16rpx;
+  font-size: 32xrpx;
+}
+.send-address .address-list .item .name .phone {
+  margin-left: 16rpx;
+}
+.send-address .address-list .item .place {
+  font-size: 32rpx;
+  padding-top: 8rpx;
+  padding-bottom: 16rpx;
+  color: var(--g-grey-color);
+  line-height: 48rpx;
+}
+.send-address .address-list .item .place .default {
+  display: inline-block;
+  font-size: 24rpx;
+  padding: 0 16rpx;
+  background: black;
+  vertical-align: top;
+  color: #fff;
+  margin-right: 8rpx;
+}
+.send-address .address-list .item .operations {
+  display: flex;
+  margin-top: 16rpx;
+  padding: 24rpx 0;
+  border-top: 1px solid #f2f2f2;
+  align-items: center;
+}
+.send-address .address-list .item .operations .radio-box {
+  flex: 1;
+}
+.send-address .address-list .item .operations .radio-label {
+  font-size: 32rpx;
+}
+.send-address .address-list .item .operations .edit,
+.send-address .address-list .item .operations .delete {
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #f2f2f2;
+  padding: 8rpx 24rpx;
+  margin-left: 32rpx;
+}
+.send-address .address-list :first-child.item {
+  margin-top: 0;
+}

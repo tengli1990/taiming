@@ -1,0 +1,17 @@
+<view class="logistics-index">
+  <van-tabs swipeable>
+    <van-tab title="寄送中"></van-tab>
+    <van-tab title="已收样"></van-tab>
+    <van-tab title="有异常"></van-tab>
+  </van-tabs>
+  <view class="item">
+    <van-cell title="寄件人" value="xxxxx" />
+    <van-cell title="运单号" is-link value="" />
+    <van-cell title="寄送时间" value="2022-03-03" />
+    <van-cell title="物品信息" value="1" />
+    <van-cell title="签收时间" value="2022-03-03" />
+    <van-cell title="签收备注" value="xxxx" />
+    <van-button size="small" block class="cancelSend">取消寄件</van-button>
+  </view>
+  <!-- <view class="line"></view> -->
+</view>

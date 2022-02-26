@@ -5,6 +5,17 @@
     "pages/main/detail/detail",
     "pages/main/filter/filter"
   ],
+  "subPackages": [
+    {
+      "root": "pages/send",
+      "name": "md_send",
+      "pages": [
+        "index/index",
+        "address/address",
+        "addressForm/addressForm"
+      ]
+    }
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -31,6 +42,12 @@
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-picker": "@vant/weapp/picker/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "md-field": "/components/field/field"
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "md-field": "/components/field/field",
+    "md-layout": "/components/layout/layout"
   }
 }

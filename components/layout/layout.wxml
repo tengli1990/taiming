@@ -1,0 +1,11 @@
+<view class="page-layout">
+  <view class="page-layout-header"></view>
+  <view class="page-layout-body">
+    <slot></slot>
+  </view>
+  <view wx:if="{{footer||footerFixed}}" class="{{['page-layout-footer',footerFixed?'fixed':'']}}">
+    <view class="page-footer-wrapper" hover-class="none" hover-stop-propagation="false">
+      <slot name="footer"></slot>
+    </view>
+  </view>
+</view>

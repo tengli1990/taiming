@@ -1,0 +1,18 @@
+.logistics-index {
+  background: var(--g-background-color);
+  min-height: 100vh;
+}
+.logistics-index .item {
+  background-color: #fff;
+  overflow: hidden;
+}
+.logistics-index .cancelSend {
+  width: calc(100% - 64rpx);
+  display: block;
+  margin: 32rpx auto;
+}
+.logistics-index .line {
+  height: 32rpx;
+  width: 100%;
+  background-color: var(--g-background-color);
+}
