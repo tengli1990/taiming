@@ -47,6 +47,7 @@
     "van-area": "@vant/weapp/area/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
+    "van-skeleton": "@vant/weapp/skeleton/index",
     "md-field": "/components/field/field",
     "md-layout": "/components/layout/layout"
   }

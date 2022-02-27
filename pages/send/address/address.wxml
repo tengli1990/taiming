@@ -1,44 +1,31 @@
 <view class="send-address">
   <md-layout footerFixed>
     <view class="body">
-      <van-radio-group value="{{ defaultValue }}" bind:change="setDefault">
-        <view class="address-list">
-          <view class="item">
-            <view class="name">
-              <text class="username">李腾</text>
-              <text class="phone">158123***1123</text>
+      <van-radio-group wx:if="{{addressList.length}}" model:value="{{ defaultValue }}" bind:change="setDefault">
+        <view class="address-list" >
+          <block wx:for="{{addressList}}" wx:for-index="idx" wx:key="idx">
+            <view class="item" wx:if="{{!item.is_deleted}}">
+              <view class="name">
+                <text class="username">{{item.contact}}</text>
+                <text class="phone">{{item.tel}}</text>
+              </view>
+              <view class="place">
+                <!-- <text class="default">默认</text> -->
+                {{item.province}}{{item.city}}{{item.county}}
+                <view class="">{{item.address}}</view>
+              </view>
+              <view class="operations">
+                <van-radio class="radio-box" label-class="radio-label" name="{{idx}}" icon-size="32rpx">
+                  {{defaultValue === idx ? '已':''}}设为默认
+                </van-radio>
+                <text class="edit" bindtap="setAddress">编辑</text>
+                <text class="delete" bindtap="deleteAddress" data-id="{{item.id}}">删除</text>
+              </view>
             </view>
-            <view class="place">
-              <!-- <text class="default">默认</text> -->
-              浙江省时尚大方xxxxx
-            </view>
-            <view class="operations">
-              <van-radio class="radio-box" label-class="radio-label" name="1" icon-size="32rpx">
-                设为默认
-              </van-radio>
-              <text class="edit" bindtap="setAddress">编辑</text>
-              <text class="delete" bindtap="deleteAddress">删除</text>
-            </view>
-          </view>
-          <view class="item">
-            <view class="name">
-              <text class="username">李腾</text>
-              <text class="phone">158123***1123</text>
-            </view>
-            <view class="place">
-              <!-- <text class="default">默认</text> -->
-              浙江省时尚大方xxxxx
-            </view>
-            <view class="operations">
-              <van-radio class="radio-box" label-class="radio-label" name="2" icon-size="32rpx">
-                设为默认
-              </van-radio>
-              <text class="edit">编辑</text>
-              <text class="delete">删除</text>
-            </view>
-          </view>
+          </block>
         </view>
       </van-radio-group>
+      <van-empty wx:else description="暂无地址信息" />
     </view>
     <view slot="footer">
       <van-button type="primary" block>新增地址</van-button>

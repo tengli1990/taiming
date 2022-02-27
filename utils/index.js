@@ -3,9 +3,28 @@
  * @param {number} phoneNumber 手机号码
  * @return {boolean}
  */
-export const verifyPhoneNumber = (phoneNumber)=>{
+export const verifyPhoneNumber = (phoneNumber) => {
   const reg = /^[1]([3-9])[0-9]{9}$/
   return reg.test(phoneNumber)
+}
+
+/**
+ * 格式转换
+ * @param {Object} params
+ */
+export const objectConvertToQuery = (payload) => {
+  let queryStr = '?', i = Object.keys(payload).length
+  if (!payload) {
+    queryStr = ''
+  }
+  Object.keys(payload).forEach((key, index) => {
+    if (i === (index + 1)) {
+      queryStr += (key + '=' + payload[key])
+    } else {
+      queryStr += (key + '=' + payload[key] + '&')
+    }
+  })
+  return queryStr
 }
 
 /**
@@ -18,7 +37,7 @@ export const verifyPhoneNumber = (phoneNumber)=>{
  * 分:mi/MI (不足两位用0补全)
  * 秒:ss/SS (不足两位用0补全)
  */
- export const formatDate = function (date, matter) {
+export const formatDate = function (date, matter) {
   let year = date.getFullYear().toString();
   let month = (date.getMonth() + 1).toString();
   month = (month.length > 1) ? month : ('0' + month);

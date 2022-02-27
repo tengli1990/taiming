@@ -1,5 +1,6 @@
 import envConfig, { currentEnv } from '../config/env'
 import { TOKEN } from './constants'
+import { objectConvertToQuery } from './index'
 const app = getApp();
 const request = (options) => {
 
@@ -10,8 +11,15 @@ const request = (options) => {
       title: options.loadingText || '加载中...',
     });
   }
+
+  if (options.method && options.method.toUpperCase() === "DELETE") {
+    options.url += objectConvertToQuery(options.data || {})
+  }
+
+  console.log(11, options.url)
+
   return new Promise((resolve, reject) => {
-    const accessToken = wx.getStorageSync('accessToken') 
+    const accessToken = wx.getStorageSync('accessToken')
     wx.request({
       method: 'GET',
       ...options,

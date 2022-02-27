@@ -1,5 +1,7 @@
 // app.js
 import Dialog from './miniprogram_npm/@vant/weapp/dialog/dialog';
+import Toast from './miniprogram_npm/@vant/weapp/toast/toast';
+import { formatDate } from './utils/index'
 App({
   onLaunch() {
     // 展示本地存储能力
@@ -10,6 +12,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    $dialog: Dialog
+    $dialog: Dialog,
+    $toast: Toast,
+    $formatDate: formatDate
   }
 })

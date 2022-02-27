@@ -1,3 +1,6 @@
+.send-index .skeleton {
+  padding: 32rpx 0;
+}
 .send-index .address {
   position: relative;
   padding: 0 var(--grid-item-content-padding);
@@ -40,10 +43,10 @@
   flex: 1;
 }
 .send-index .address .item .info .main .name {
-  font-size: 28rpx;
+  font-size: 32rpx;
 }
 .send-index .address .item .info .main .desc {
-  font-size: 24rpx;
+  font-size: 32rpx;
   color: var(--g-grey-color);
   margin-top: 10rpx;
 }
