@@ -3,7 +3,7 @@
     <view>
       <view wx:if="{{!skeleton}}" class="address">
         <block wx:for="{{addressList}}" wx:for-index="idx" wx:key="idx">
-          <view class="item" bindtap="selectAddress" data-item="{{item}}">
+          <view class="item" bindtap="selectAddress" data-index="{{idx}}">
             <view class="icon">{{item.typeName}}</view>
             <view class="info">
               <view class="main">

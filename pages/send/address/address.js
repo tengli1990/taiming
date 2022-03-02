@@ -4,14 +4,32 @@ const { $toast, $dialog } = app.globalData
 Page({
   data: {
     defaultValue: '',
-    addressList: []
+    addressList: [],
+    selectType: null,
+    request: false
   },
-  onLoad() {
+  onLoad(opt) {
+    console.log(opt)
+    this.setData({
+      selectType: Number(opt.type)
+    })
     this.getList()
   },
+  onShow(e) {
+    if (this.data.request) {
+      this.setData({
+        request: false
+      })
+      this.getList()
+    }
+  },
   getList() {
+    const contactType = {
+      '0': 1,
+      '1': 2
+    }
     getAddressList({
-      contact_type: 1
+      contact_type: contactType[this.data.selectType]
     }).then(res => {
       if (res.error_code !== 0) {
         app.gobalData.$toast(res.msg)
@@ -30,9 +48,15 @@ Page({
       })
     })
   },
-  setAddress() {
+  editAddress(event) {
+    const { id } = event.currentTarget.dataset
     wx.navigateTo({
-      url: '../addressForm/addressForm'
+      url: `../addressForm/addressForm?addressId=${id}`
+    });
+  },
+  createAddress() {
+    wx.navigateTo({
+      url: `../addressForm/addressForm`
     });
   },
   // 设置默认
@@ -63,6 +87,23 @@ Page({
         }
       })
 
+    })
+  },
+  onSelect(event) {
+    console.log()
+    const { selectType } = this.data
+    const pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2]
+    prevPage.data.addressList[selectType] = {
+      ...prevPage.data.addressList[selectType],
+      ...event.currentTarget.dataset.item
+    }
+    prevPage.setData({
+      addressList: prevPage.data.addressList
+    })
+
+    wx.navigateBack({//返回
+      delta: 1
     })
   }
 })

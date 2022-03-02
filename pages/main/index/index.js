@@ -28,7 +28,7 @@ Page({
       {
         key: 3,
         icon: 'http://static.timingbio.com/collected_sample_wx_app/index_icon/photo.png',
-        title: '收样品'
+        title: '收样本'
       }
     ],
     headPortrait: {

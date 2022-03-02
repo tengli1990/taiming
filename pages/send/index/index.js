@@ -70,9 +70,14 @@ Page({
 
     })
   },
-  selectAddress() {
+  selectAddress(event) {
+    const { index } = event.currentTarget.dataset
+
+    if (!this.data.addressList[index].selectable) {
+      return
+    }
     wx.navigateTo({
-      url: '../address/address'
+      url: '../address/address?type=' + index
     });
   },
   /**

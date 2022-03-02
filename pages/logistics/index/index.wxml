@@ -1,17 +1,29 @@
 <view class="logistics-index">
-  <van-tabs swipeable>
-    <van-tab title="寄送中"></van-tab>
-    <van-tab title="已收样"></van-tab>
-    <van-tab title="有异常"></van-tab>
-  </van-tabs>
-  <view class="item">
-    <van-cell title="寄件人" value="xxxxx" />
-    <van-cell title="运单号" is-link value="" />
-    <van-cell title="寄送时间" value="2022-03-03" />
-    <van-cell title="物品信息" value="1" />
-    <van-cell title="签收时间" value="2022-03-03" />
-    <van-cell title="签收备注" value="xxxx" />
-    <van-button size="small" block class="cancelSend">取消寄件</van-button>
+  <van-sticky>
+    <van-tabs swipeable bind:change="onTabChange">
+      <van-tab title="寄送中" info="{{unreadData.delivering_count || null}}" name="1"></van-tab>
+      <van-tab title="已收样" info="{{unreadData.collected_count || null}}" name="2"></van-tab>
+      <van-tab title="有异常" info="{{unreadData.exception_count || null}}" name="3"></van-tab>
+    </van-tabs>
+  </van-sticky>
+  <view class="order-list" wx:if="{{orderList.length}}">
+    <block wx:for="{{orderList}}" wx:for-index="idx" wx:key="id">
+      <view class="item">
+        <van-cell title="寄件人" value="{{item.consignor_name}}" />
+        <van-cell title="运单号" is-link value="{{item.order_id}}" />
+        <van-cell title="寄送时间" value="{{item.sent_time}}" />
+        <van-cell title="物品信息" value="1" />
+        <van-cell title="签收时间" value="{{item.received_time||'-'}}" />
+        <van-cell title="签收备注" value="{{item.received_mark || '-'}}" />
+        <van-button wx:if="{{currentStatus==1&&item.order_id}}" size="small" block class="cancelSend" bind:click="cancelOrderConfirm" data-id="{{item.id}}">
+          取消寄件
+        </van-button>
+      </view>
+    </block>
+    <view class="loaded-all" wx:if="{{page>=totalPage}}">已经到底了～</view>
   </view>
+  <van-empty wx:else image="search" description="暂无数据" />
   <!-- <view class="line"></view> -->
+  <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
 </view>

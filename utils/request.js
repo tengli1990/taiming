@@ -4,7 +4,7 @@ import { objectConvertToQuery } from './index'
 const app = getApp();
 const request = (options) => {
 
-  const baseURL = envConfig[currentEnv].baseURL
+  const baseURL = options.baseURL !== undefined ? options.baseURL : envConfig[currentEnv].baseURL
 
   if (options.loading) {
     wx.showLoading({
@@ -12,6 +12,7 @@ const request = (options) => {
     });
   }
 
+  // 处理delete类型使用query方式传递参数
   if (options.method && options.method.toUpperCase() === "DELETE") {
     options.url += objectConvertToQuery(options.data || {})
   }

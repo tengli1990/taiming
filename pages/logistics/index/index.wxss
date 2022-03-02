@@ -2,14 +2,18 @@
   background: var(--g-background-color);
   min-height: 100vh;
 }
-.logistics-index .item {
+.logistics-index .order-list .item {
   background-color: #fff;
   overflow: hidden;
+  margin-top: 32rpx;
 }
-.logistics-index .cancelSend {
+.logistics-index .order-list .cancelSend {
   width: calc(100% - 64rpx);
   display: block;
   margin: 32rpx auto;
+}
+.logistics-index .order-list :first-child {
+  margin-top: none !important;
 }
 .logistics-index .line {
   height: 32rpx;

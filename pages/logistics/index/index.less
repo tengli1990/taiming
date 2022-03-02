@@ -2,14 +2,20 @@
   background: var(--g-background-color);
   min-height: 100vh;
 
-  .item {
-    background-color: #fff;
-    overflow: hidden;
-  }
-  .cancelSend {
-    width: calc(100% - 64rpx);
-    display: block;
-    margin: 32rpx auto;
+  .order-list {
+    .item {
+      background-color: #fff;
+      overflow: hidden;
+      margin-top: 32rpx;
+    }
+    .cancelSend {
+      width: calc(100% - 64rpx);
+      display: block;
+      margin: 32rpx auto;
+    }
+    & :first-child{
+      margin-top: none !important;
+    }
   }
 
   .line {

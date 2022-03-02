@@ -17,7 +17,7 @@
       <van-field model:value="{{address}}" label="详细地址" placeholder="街道楼牌号等"></van-field>
       <!-- <van-field value="" label="工作单位" placeholder="请填写单位名称"></van-field> -->
       <van-cell title="是否设为默认">
-        <van-switch checked="{{ submitParams.is_default }}" bind:change="setDefaultChange" size="48rpx" />
+        <van-switch checked="{{ is_default }}" bind:change="setDefaultChange" size="48rpx" />
       </van-cell>
     </view>
     <view slot="footer">
@@ -25,7 +25,7 @@
     </view>
   </md-layout>
   <van-popup show="{{ showPlacePopup }}" position="bottom" bind:close="closePlacePopup">
-    <van-area area-list="{{ areaList }}" title="选择地区" value="" bind:confirm="selectedArea" />
+    <van-area area-list="{{ areaList }}" title="选择地区" value="{{currentAddressCode}}" bind:confirm="selectedArea" />
   </van-popup>
   <van-toast id="van-toast" />
   <van-dialog id="van-dialog" />

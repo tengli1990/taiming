@@ -2,23 +2,25 @@
   <md-layout footerFixed>
     <view class="body">
       <van-radio-group wx:if="{{addressList.length}}" model:value="{{ defaultValue }}" bind:change="setDefault">
-        <view class="address-list" >
+        <view class="address-list">
           <block wx:for="{{addressList}}" wx:for-index="idx" wx:key="idx">
             <view class="item" wx:if="{{!item.is_deleted}}">
-              <view class="name">
-                <text class="username">{{item.contact}}</text>
-                <text class="phone">{{item.tel}}</text>
-              </view>
-              <view class="place">
-                <!-- <text class="default">默认</text> -->
-                {{item.province}}{{item.city}}{{item.county}}
-                <view class="">{{item.address}}</view>
+              <view bindtap="onSelect" data-item="{{item}}">
+                <view class="name">
+                  <text class="username">{{item.contact}}</text>
+                  <text class="phone">{{item.tel}}</text>
+                </view>
+                <view class="place">
+                  <!-- <text class="default">默认</text> -->
+                  {{item.province}}{{item.city}}{{item.county}}
+                  <view class="">{{item.address}}</view>
+                </view>
               </view>
               <view class="operations">
                 <van-radio class="radio-box" label-class="radio-label" name="{{idx}}" icon-size="32rpx">
                   {{defaultValue === idx ? '已':''}}设为默认
                 </van-radio>
-                <text class="edit" bindtap="setAddress">编辑</text>
+                <text class="edit" bindtap="editAddress" data-id="{{item.id}}">编辑</text>
                 <text class="delete" bindtap="deleteAddress" data-id="{{item.id}}">删除</text>
               </view>
             </view>
@@ -28,7 +30,7 @@
       <van-empty wx:else description="暂无地址信息" />
     </view>
     <view slot="footer">
-      <van-button type="primary" block>新增地址</van-button>
+      <van-button type="primary" block bind:click="createAddress">新增地址</van-button>
     </view>
   </md-layout>
   <van-toast id="van-toast" />

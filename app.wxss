@@ -10,3 +10,9 @@ page {
   --g-grey-color: #666;
   --g-background-color: #f6f7f8;
 }
+.loaded-all {
+  text-align: center;
+  padding: 20rpx 0;
+  color: #e1e1e1;
+  font-size: 28rpx;
+}

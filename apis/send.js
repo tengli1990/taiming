@@ -19,10 +19,28 @@ export const createAddress = (data) => {
   })
 }
 
+// 更新地址
+export const updateAddress = (data) => {
+  return request({
+    url: '/address',
+    method: 'PUT',
+    data
+  })
+}
+
 // 获取地址列表
 export const getAddressList = (data) => {
   return request({
     url: '/address/list',
+    loading: true,
+    data
+  })
+}
+
+// 获取地址详情
+export const getAddressDetail = (data) => {
+  return request({
+    url: '/address',
     loading: true,
     data
   })
