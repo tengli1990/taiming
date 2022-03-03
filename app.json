@@ -14,6 +14,13 @@
         "address/address",
         "addressForm/addressForm"
       ]
+    },
+    {
+      "root": "pages/logistics",
+      "name": "md_logistics",
+      "pages": [
+        "index/index"
+      ]
     }
   ],
   "window": {

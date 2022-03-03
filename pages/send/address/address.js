@@ -3,6 +3,10 @@ const app = getApp();
 const { $toast, $dialog } = app.globalData
 Page({
   data: {
+    isLoadedAll: false,
+    page: 1,
+    per_page: 10,
+    totalPage: 1,
     defaultValue: '',
     addressList: [],
     selectType: null,
@@ -28,14 +32,17 @@ Page({
       '0': 1,
       '1': 2
     }
-    getAddressList({
+    const params = {
+      page: this.data.page,
+      per_page: this.data.per_page,
       contact_type: contactType[this.data.selectType]
-    }).then(res => {
+    }
+    getAddressList(params).then(res => {
       if (res.error_code !== 0) {
         app.gobalData.$toast(res.msg)
         return
       }
-      const { address_list } = res.data
+      const { address_list, current_page, pages } = res.data
       address_list.forEach((address, index) => {
         if (address.is_default) {
           this.setData({
@@ -43,8 +50,23 @@ Page({
           })
         }
       })
+
       this.setData({
-        addressList: address_list
+        totalPage: pages
+      })
+      if (current_page === pages) {
+        this.setData({
+          isLoadedAll: true
+        })
+      }
+      if (current_page === 1) {
+        this.setData({
+          addressList: address_list
+        })
+        return
+      }
+      this.setData({
+        addressList: [...this.data.addressList, ...address_list]
       })
     })
   },
@@ -61,13 +83,14 @@ Page({
   },
   // 设置默认
   setDefault(event) {
+    console.log(event)
     this.setData({
       defaultValue: event.detail
     })
   },
+  // 删除地址
   deleteAddress(event) {
     const { id } = event.target.dataset
-
     $dialog.confirm({
       title: '提示',
       message: '确认删除？',
@@ -89,6 +112,7 @@ Page({
 
     })
   },
+  // 选择地址返回上一页
   onSelect(event) {
     console.log()
     const { selectType } = this.data
@@ -105,5 +129,15 @@ Page({
     wx.navigateBack({//返回
       delta: 1
     })
+  },
+  // 上啦加载
+  onReachBottom() {
+    if (this.data.page >= this.data.totalPage) {
+      return
+    }
+    this.setData({
+      page: ++this.data.page
+    })
+    this.getList()
   }
 })

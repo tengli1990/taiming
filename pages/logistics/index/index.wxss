@@ -8,7 +8,7 @@
   margin-top: 32rpx;
 }
 .logistics-index .order-list .cancelSend {
-  width: calc(100% - 64rpx);
+  width: 200rpx;
   display: block;
   margin: 32rpx auto;
 }

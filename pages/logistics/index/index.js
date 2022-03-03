@@ -4,9 +4,10 @@ const { $toast, $dialog } = app.globalData
 
 Page({
   data: {
+    searchText:"",
     isLoadedAll: false,
     page: 1,
-    per_page: 2,
+    per_page: 10,
     totalPage: 1,
     orderList: [],
     currentStatus: 1,
@@ -21,7 +22,8 @@ Page({
     const params = {
       page: this.data.page,
       per_page: this.data.per_page,
-      status: this.data.currentStatus
+      status: this.data.currentStatus,
+      waybill_no: this.data.searchText
     }
     getDeliveryList(params).then(res => {
       if (res.error_code !== 0) {
@@ -103,6 +105,16 @@ Page({
       })
     })
   },
+  // 搜索
+  onSearchChange(){
+    // console.log(111)
+  },
+  onSearchSubmit(){
+    this.setData({
+      page: 1
+    })
+     this.getList()
+  },
   // 上啦加载
   onReachBottom() {
     if (this.data.page >= this.data.totalPage) {
@@ -112,5 +124,5 @@ Page({
       page: ++this.data.page
     })
     this.getList()
-  },
+  }
 })

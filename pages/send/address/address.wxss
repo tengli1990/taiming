@@ -4,6 +4,7 @@
 }
 .send-address .address-list .item {
   padding: var(--g-padding-x);
+  padding-top: 32rpx;
   background: #fff;
   font-size: 32rpx;
   margin-top: 32rpx;

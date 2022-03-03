@@ -1,3 +1,5 @@
 {
- 
+  "navigationBarTitleText": "物流订单",
+  "navigationBarBackgroundColor": "#67C23A",
+  "navigationBarTextStyle":"white"
 }

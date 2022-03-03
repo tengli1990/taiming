@@ -1,7 +1,7 @@
 <view class="send-address">
   <md-layout footerFixed>
     <view class="body">
-      <van-radio-group wx:if="{{addressList.length}}" model:value="{{ defaultValue }}" bind:change="setDefault">
+      <van-radio-group wx:if="{{addressList.length}}" model:value="{{ defaultValue }}">
         <view class="address-list">
           <block wx:for="{{addressList}}" wx:for-index="idx" wx:key="idx">
             <view class="item" wx:if="{{!item.is_deleted}}">
@@ -17,14 +17,15 @@
                 </view>
               </view>
               <view class="operations">
-                <van-radio class="radio-box" label-class="radio-label" name="{{idx}}" icon-size="32rpx">
-                  {{defaultValue === idx ? '已':''}}设为默认
+                <van-radio class="radio-box" label-class="radio-label" name="{{item.id}}" bind:change="setDefault" data-item="{{item}}" icon-size="32rpx">
+                  {{defaultValue === item.id ? '已':''}}设为默认
                 </van-radio>
                 <text class="edit" bindtap="editAddress" data-id="{{item.id}}">编辑</text>
                 <text class="delete" bindtap="deleteAddress" data-id="{{item.id}}">删除</text>
               </view>
             </view>
           </block>
+          <view class="loaded-all" wx:if="{{page>=totalPage}}">已经到底了～</view>
         </view>
       </van-radio-group>
       <van-empty wx:else description="暂无地址信息" />

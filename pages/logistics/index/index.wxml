@@ -1,5 +1,8 @@
 <view class="logistics-index">
   <van-sticky>
+    <van-search model:value="{{ searchText }}" shape="round" placeholder="请输入运单号" use-action-slot bind:change="onSearchChange" bind:search="onSearchSubmit">
+      <view slot="action" bind:tap="onSearchSubmit">搜索</view>
+    </van-search>
     <van-tabs swipeable bind:change="onTabChange">
       <van-tab title="寄送中" info="{{unreadData.delivering_count || null}}" name="1"></van-tab>
       <van-tab title="已收样" info="{{unreadData.collected_count || null}}" name="2"></van-tab>
@@ -15,7 +18,7 @@
         <van-cell title="物品信息" value="1" />
         <van-cell title="签收时间" value="{{item.received_time||'-'}}" />
         <van-cell title="签收备注" value="{{item.received_mark || '-'}}" />
-        <van-button wx:if="{{currentStatus==1&&item.order_id}}" size="small" block class="cancelSend" bind:click="cancelOrderConfirm" data-id="{{item.id}}">
+        <van-button wx:if="{{currentStatus==1&&item.order_id}}" size="small" block class="cancelSend" custom-style="border:none; color:#2D89FA" bind:click="cancelOrderConfirm" data-id="{{item.id}}">
           取消寄件
         </van-button>
       </view>
