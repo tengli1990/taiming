@@ -28,6 +28,15 @@ export const updateAddress = (data) => {
   })
 }
 
+// 设置默认
+export const setAddressDefault = (data) => {
+  return request({
+    url: '/address/default',
+    method: 'PUT',
+    data
+  })
+}
+
 // 获取地址列表
 export const getAddressList = (data) => {
   return request({

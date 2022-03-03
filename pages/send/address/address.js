@@ -1,4 +1,4 @@
-import { getAddressList, removeAddressList } from '../../../apis/send'
+import { getAddressList, removeAddressList, setAddressDefault } from '../../../apis/send'
 const app = getApp();
 const { $toast, $dialog } = app.globalData
 Page({
@@ -82,10 +82,16 @@ Page({
     });
   },
   // 设置默认
-  setDefault(event) {
-    console.log(event)
-    this.setData({
-      defaultValue: event.detail
+  setDefault({ detail }) {
+    setAddressDefault({ id: detail }).then(res => {
+      if (res.error_code !== 0) {
+        $toast(res.msg)
+        return
+      }
+      $toast('设置成功')
+      this.setData({
+        defaultValue: detail
+      })
     })
   },
   // 删除地址
