@@ -24,7 +24,7 @@
       </view>
       <view class="form">
         <van-cell title="期望上门时间" is-link arrow-direction="down" value="{{timeIntervalText}}" bind:click="openTimePopup" />
-        <van-field model:value="{{cargoDetails}}" label="物品信息" type="number" placeholder="请输入一组实验样本的数量" input-align="right" use-button-slot>
+        <van-field model:value="{{cargoDetails}}" label="物品信息" type="number" placeholder="样本数量" input-align="right" use-button-slot>
           <view slot="button">例</view>
         </van-field>
         <van-cell title="付款方式" value="到付" />
@@ -37,9 +37,8 @@
       <van-button type="primary" block bindtap="submit">下单</van-button>
     </view>
   </md-layout>
-
-  <van-popup show="{{ showTimePopup }}" position="bottom" bind:close="closeTimePopup">
-    <van-picker columns="{{ timeIntervalColumn }}" default-index="{{timeIntervalIndex}}" show-toolbar bind:confirm="timeIntervalConfirm" />
+  <van-popup show="{{ showTimePopup }}" position="bottom">
+    <van-picker columns="{{ timeIntervalColumn }}" default-index="{{timeIntervalIndex}}" show-toolbar bind:cancel="closeTimePopup" bind:confirm="timeIntervalConfirm" />
   </van-popup>
   <van-toast id="van-toast" />
   <van-dialog id="van-dialog" />

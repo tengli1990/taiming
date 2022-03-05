@@ -46,7 +46,7 @@ Page({
       address_list.forEach((address, index) => {
         if (address.is_default) {
           this.setData({
-            defaultValue: index
+            defaultValue: address.id
           })
         }
       })

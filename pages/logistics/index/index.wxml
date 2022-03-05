@@ -11,14 +11,14 @@
   </van-sticky>
   <view class="order-list" wx:if="{{orderList.length}}">
     <block wx:for="{{orderList}}" wx:for-index="idx" wx:key="id">
-      <view class="item">
+      <view class="item" wx:if="{{item.is_canceled!==1}}">
         <van-cell title="寄件人" value="{{item.consignor_name}}" />
-        <van-cell title="运单号" is-link value="{{item.order_id}}" />
+        <van-cell title="运单号" is-link="{{false}}" value="{{item.waybill_no}}" />
         <van-cell title="寄送时间" value="{{item.sent_time}}" />
-        <van-cell title="物品信息" value="1" />
+        <van-cell title="物品信息" value="{{item.cargo_details}}" />
         <van-cell title="签收时间" value="{{item.received_time||'-'}}" />
         <van-cell title="签收备注" value="{{item.received_mark || '-'}}" />
-        <van-button wx:if="{{currentStatus==1&&item.order_id}}" size="small" block class="cancelSend" custom-style="border:none; color:#2D89FA" bind:click="cancelOrderConfirm" data-id="{{item.id}}">
+        <van-button wx:if="{{currentStatus==1&&item.is_canceled===0}}" size="small" block class="cancelSend" custom-style="border:none; color:#2D89FA" bind:click="cancelOrderConfirm" data-id="{{item.id}}">
           取消寄件
         </van-button>
       </view>

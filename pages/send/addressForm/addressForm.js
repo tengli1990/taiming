@@ -1,6 +1,8 @@
-import { areaList } from '../../../miniprogram_npm/@vant/area-data/index';
+// import { areaList } from '../../../miniprogram_npm/@vant/area-data/index';
+import areaList from '../../../assets/js/region_code.js'
 import { createAddress, updateAddress, getAddressDetail } from '../../../apis/send'
-// import { getAreaList } from '../../../apis/index'
+import qqmap from '../../../miniprogram_npm/qqmap-wx-jssdk/index';
+import { verifyPhoneNumber } from '../../../utils/index'
 const app = getApp();
 const { $toast } = app.globalData;
 Page({
@@ -14,30 +16,24 @@ Page({
     tel: '',
     address: '',
     is_default: false,
-    submitParams: {
-      is_default: false,
-      contact: '',
-      tel: '',
-      province: '',
-      city: '',
-      county: '',
-      address: ''
-    }
+    // submitParams: {
+    //   contact: '',
+    //   tel: '',
+    //   province: '',
+    //   city: '',
+    //   county: '',
+    //   address: ''
+    // }
   },
   onLoad(opt) {
     this.setData(opt)
     this.getAddressDetail()
-    this.getAreaList()
+    console.log(areaList)
   },
   selectAddress() {
     wx.navigateTo({
       url: '../address/address'
     });
-  },
-  getAreaList() {
-    // getAreaList().then(res=>{
-    //   console.log(res)
-    // })
   },
   getAddressDetail() {
     if (!this.data.addressId) return
@@ -97,12 +93,12 @@ Page({
     const county = values[2].name
     this.setData({
       area: `${province}/${city}/${county}`,
-      submitParams: {
-        ...this.data.submitParams,
-        province,
-        city,
-        county
-      }
+      // submitParams: {
+      //   ...this.data.submitParams,
+      //   province,
+      //   city,
+      //   county
+      // }
     })
     this.closePlacePopup()
   },
@@ -120,13 +116,31 @@ Page({
       county: areaArr[2],
       is_default
     }
-    let apiName = createAddress
 
+    // check params
+    const requiredField = {
+      contact: '请填写收货人姓名',
+      tel: '请填写收货人手机号码',
+      province: '请选择所在地区',
+      address: '请填写详细地址'
+    }
+
+    for (let key in requiredField) {
+      if (!params[key]) {
+        $toast(requiredField[key])
+        return
+      }
+      if (key === 'tel' && !verifyPhoneNumber(params[key])) {
+        $toast('您输入的手机号格式不正确')
+        return
+      }
+    }
+
+    let apiName = createAddress
     if (addressId) {
       params.id = Number(addressId)
       apiName = updateAddress
     }
-
     apiName(params).then(res => {
       if (res.error_code !== 0) {
         app.globalData.$toast(res.msg)
@@ -157,8 +171,73 @@ Page({
 
       },
       fail: (err) => {
-        console.log(err)
         $toast('获取失败，请重新尝试')
+      }
+    })
+  },
+  // 获取定位经纬度
+  getLocation() {
+    const that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        that.getOnlineDistrict(res.latitude, res.longitude)
+      },
+      fail: function () {
+        wx.getSetting({
+          success(res) {
+            if (!res.authSetting['scope.userLocation']) {
+              wx.authorize({
+                scope: 'scope.userLocation',
+                success() {
+                  wx.chooseLocation({
+                    success: function (res) {
+                      that.getOnlineDistrict(res.latitude, res.longitude)
+                    },
+                  })
+                }
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+  //这里调用腾讯地图api 获取用户位置所在区
+  getOnlineDistrict(latitude, longitude) {
+    const that = this
+    var map = new qqmap({
+      key: "XY4BZ-XMQ6W-SIXRP-RBM3P-64VDH-FZFDE"
+    })
+    //通过这个方法来实现经纬度反推省市区
+    map.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: function (res) {
+        const { address_component } = res.result;
+        const { county_list } = that.data.areaList
+
+        const { province, city, district, street_number } = address_component
+        let code = ""
+        for (let key in county_list) {
+          if ([district].includes(county_list[key])) {
+            code = key
+          }
+        }
+
+        that.setData({
+          area: `${province}/${city}/${district}`,
+          province,
+          city,
+          county: district,
+          currentAddressCode: code,
+          address: street_number
+
+        })
+      },
+      fail: function (err) {
+        $toast('获取地址失败')
       }
     })
   }

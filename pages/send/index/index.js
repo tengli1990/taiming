@@ -57,7 +57,6 @@ Page({
         $toast(res.msg)
         return
       }
-      console.log(res)
       const { consignee_address, consignor_address } = res.data
       this.data.addressList = [
         { ...this.data.addressList[0], ...consignor_address },
@@ -85,7 +84,6 @@ Page({
    * @param {} event 
    */
   openTimePopup() {
-    console.log(this.data.timeIntervalColumn)
     this.setData({
       showTimePopup: true
     })
@@ -146,7 +144,6 @@ Page({
         src: file[i].url, // 图片路径
         quality: 60, // 压缩质量
         success: function (res) {
-          console.log(res)
           uploadPromiseTask.push(that.uploadFile(res.tempFilePath));
           uploadIndex++
           if (file.length === uploadIndex) {
@@ -215,16 +212,16 @@ Page({
         image_list: fileList.map(item => item.url)
       }
     })
-    console.log(this.data.submitParams)
     submitDeliveryOrder(this.data.submitParams).then(res => {
       if (res.error_code !== 0) {
         $toast(res.msg)
         return
       }
-      console.log($toast)
       $toast('下单成功')
       setTimeout(() => {
-        wx.navigateBack();
+        wx.redirectTo({
+          url: '/pages/logistics/index/index'
+        });
       }, 1000)
     })
   }

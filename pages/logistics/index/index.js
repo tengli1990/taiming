@@ -99,6 +99,7 @@ Page({
             }
             resolve(true)
             $toast('操作成功')
+            this.getList()
           })
         }
         resolve(true)
