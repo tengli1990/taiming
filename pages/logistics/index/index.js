@@ -4,7 +4,8 @@ const { $toast, $dialog } = app.globalData
 
 Page({
   data: {
-    searchText:"",
+    waybillUrl: "/pages/logistics/waybillDetail/waybillDetail",
+    searchText: "",
     isLoadedAll: false,
     page: 1,
     per_page: 10,
@@ -62,9 +63,9 @@ Page({
       const { delivering_count, collected_count, exception_count } = res.data
       this.setData({
         unreadData: {
-          delivering_count: delivering_count > 99 ? "99+": delivering_count,
-          collected_count: collected_count > 99 ? "99+": collected_count,
-          exception_count: exception_count > 99 ? "99+": exception_count,
+          delivering_count: delivering_count > 99 ? "99+" : delivering_count,
+          collected_count: collected_count > 99 ? "99+" : collected_count,
+          exception_count: exception_count > 99 ? "99+" : exception_count,
         }
       })
 
@@ -107,14 +108,14 @@ Page({
     })
   },
   // 搜索
-  onSearchChange(){
+  onSearchChange() {
     // console.log(111)
   },
-  onSearchSubmit(){
+  onSearchSubmit() {
     this.setData({
       page: 1
     })
-     this.getList()
+    this.getList()
   },
   // 上啦加载
   onReachBottom() {
@@ -125,5 +126,12 @@ Page({
       page: ++this.data.page
     })
     this.getList()
+  },
+  toDetail(event) {
+    console.log(event)
+    const { no } = event.target.dataset
+    wx.navigateTo({
+      url:this.data.waybillUrl+`?waybillNo=${no}`
+    })
   }
 })

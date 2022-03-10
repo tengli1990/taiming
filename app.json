@@ -19,7 +19,8 @@
       "root": "pages/logistics",
       "name": "md_logistics",
       "pages": [
-        "index/index"
+        "index/index",
+        "waybillDetail/waybillDetail"
       ]
     }
   ],
@@ -60,6 +61,7 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
+    "van-steps":"@vant/weapp/steps/index",
     "md-field": "/components/field/field",
     "md-layout": "/components/layout/layout"
   }

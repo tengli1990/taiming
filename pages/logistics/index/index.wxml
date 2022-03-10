@@ -13,7 +13,7 @@
     <block wx:for="{{orderList}}" wx:for-index="idx" wx:key="id">
       <view class="item" wx:if="{{item.is_canceled!==1}}">
         <van-cell title="寄件人" value="{{item.consignor_name}}" />
-        <van-cell title="运单号" is-link="{{false}}" value="{{item.waybill_no}}" />
+        <van-cell title="运单号" value="{{item.waybill_no}}" is-link bind:click="toDetail" data-no="{{item.waybill_no}}" />
         <van-cell title="寄送时间" value="{{item.sent_time}}" />
         <van-cell title="物品信息" value="{{item.cargo_details}}" />
         <van-cell title="签收时间" value="{{item.received_time||'-'}}" />

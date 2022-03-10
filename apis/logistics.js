@@ -36,3 +36,11 @@ export const setRead = (data) => {
     data
   })
 }
+
+// 获取运单详情
+export const getDeliveryRoutes = (data)=>{
+  return request({
+    url:'/delivery/routes',
+    data
+  })
+}
