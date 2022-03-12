@@ -41,6 +41,7 @@ export const setRead = (data) => {
 export const getDeliveryRoutes = (data)=>{
   return request({
     url:'/delivery/routes',
+    loading: true,
     data
   })
 }

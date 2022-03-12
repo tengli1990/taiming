@@ -1,5 +1,5 @@
 <view class="logistics-waybill-detail">
-  <view class="step-list">
+  <view class="step-list" wx:if="{{stepRoutes.length && steps.length }}">
     <block wx:for="{{steps}}" wx:for-index="idx" wx:key="idx">
       <view class="item {{(item.opCode==80||item.opCode==8000)?'complete':''}}">
         <view class="status">{{status[item.opCode]||'运送中'}}</view>
@@ -11,4 +11,5 @@
       </view>
     </block>
   </view>
+  <van-empty wx:else image="search" description="暂无信息" />
 </view>
