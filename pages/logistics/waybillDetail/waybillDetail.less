@@ -1,0 +1,72 @@
+.step-list {
+  padding: 48rpx 0;
+  :last-child.item {
+    .info:before {
+      border: none;
+    }
+    .info:after {
+      width: 48rpx;
+      height: 48rpx;
+      content: "发";
+      left: -24rpx;
+      top: 4rpx;
+      color: #fff;
+      font-size: 28rpx;
+      text-align: center;
+      line-height: 48rpx;
+    }
+  }
+  .item.complete{
+    .info:after {
+      width: 48rpx;
+      height: 48rpx;
+      content: "收";
+      left: -24rpx;
+      top: 4rpx;
+      color: #fff;
+      background:#67C23A;
+      font-size: 28rpx;
+      text-align: center;
+      line-height: 48rpx;
+    }
+  }
+  .item {
+    display: flex;
+    padding: 0 32rpx;
+    font-size: 32rpx;
+    color: #666;
+    .status {
+      white-space: nowrap;
+      padding-right: 48rpx;
+      min-width:100rpx;
+      text-align: right;
+    }
+    .info {
+      position: relative;
+      padding-left: 48rpx;
+      padding: 0 0 32rpx 48rpx;
+      .desc {
+        margin-top: 16rpx;
+        line-height: 1.5;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 32rpx;
+        bottom: -16rpx;
+        border-left: 1px dashed #ccc;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        top: 12rpx;
+        left: -16rpx;
+        width: 32rpx;
+        height: 32rpx;
+        border-radius: 50%;
+        background: #ccc;
+      }
+    }
+  }
+}

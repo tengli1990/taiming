@@ -1,0 +1,14 @@
+<view class="logistics-waybill-detail">
+  <view class="step-list">
+    <block wx:for="{{steps}}" wx:for-index="idx" wx:key="idx">
+      <view class="item {{(item.opCode==80||item.opCode==8000)?'complete':''}}">
+        <view class="status">{{status[item.opCode]||'运送中'}}</view>
+        <view class="info">
+          <view class="time">{{item.acceptTime}}</view>
+          <!-- <view class="title"></view> -->
+          <view class="desc">{{item.remark}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
