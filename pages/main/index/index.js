@@ -1,5 +1,5 @@
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
-import { getSubjectList } from '../../../apis/main'
+import { getSubjectList,getLarkList } from '../../../apis/main'
 // 获取应用实例
 const app = getApp()
 
@@ -183,7 +183,15 @@ Page({
       })
     }.bind(this), 1300);
 
-    this.resetPage()
-    this.getList()
+    // 增量同步飞书表格信息
+    getLarkList({past_days:1}).then(res => {
+      console.log("增量同步飞书表格信息")
+      if (res.error_code !== 0) {
+        Toast(res.msg)
+        return
+      }
+      this.resetPage()
+      this.getList()
+    })
   }
 })

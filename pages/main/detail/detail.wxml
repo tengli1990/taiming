@@ -5,6 +5,16 @@
   <van-cell title="收集完成">
     <van-switch checked="{{ checked }}" size="24px" bind:change="onSwitchChange" />
   </van-cell>
+  <view class="upload-explain">
+    <view>拍取照片内容：</view>
+    <view>（1）入院记录（含有吸烟史、饮酒史、肿瘤家族史及既往肿瘤史）；</view>
+    <view>（2）出院记录；</view>
+    <view>（3）手术经过（含术中诊断、手术方式、术中所见）；</view>
+    <view>（4）病理报告；</view>
+    <view>（5）血常规报告；</view>
+    <view>（6）基因检测结果（如有）</view>
+    <view>（7）诊断结果，如B超、胃肠镜、CT等</view>
+  </view>
   <van-toast id="van-toast" />
   <van-dialog id="van-dialog" />
 </view>

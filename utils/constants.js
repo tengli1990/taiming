@@ -1,4 +1,9 @@
 /**
+ * 全局上传图片压缩质量参数
+ */
+export const UPLOAD_IMAGE_QUALITY = 40
+
+/**
  * 微信公众号相关信息
  */
 export const WECHAT_TOKEN = 'wxAccessTOken'

@@ -10,6 +10,15 @@ export const getSubjectList = (data) => {
   })
 }
 
+// 增量同步飞书基础信息表
+export const getLarkList = (data) => {
+  return request({
+    url: `/lark/subject/latest`,
+    loading: true,
+    data
+  })
+}
+
 
 // 获取检测者详情接口
 export const getSubjectDetail = (data) => {

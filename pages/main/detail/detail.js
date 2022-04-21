@@ -1,4 +1,5 @@
 import { getSubjectDetail, updateSubjectInfo, uploadSubjectPicture } from '../../../apis/main'
+import { UPLOAD_IMAGE_QUALITY } from '../../../utils/constants'
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
 import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
 Page({
@@ -51,7 +52,7 @@ Page({
     for (let i = 0; i < file.length; i++) {
       wx.compressImage({
         src: file[i].url, // 图片路径
-        quality: 60, // 压缩质量
+        quality: UPLOAD_IMAGE_QUALITY, // 压缩质量
         success: function (res) {
           uploadPromiseTask.push(that.uploadFile(res.tempFilePath));
           uploadIndex++

@@ -1,0 +1,8 @@
+.upload-explain {
+  margin: 0 32rpx;
+  font-size: 32rpx;
+  background: #f7f8f9;
+  color: #666;
+  padding: 24rpx;
+  line-height: 1.5;
+}

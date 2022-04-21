@@ -1,4 +1,5 @@
 import { getAddressDefault, uploadDeliveryPicture, submitDeliveryOrder } from '../../../apis/send'
+import { UPLOAD_IMAGE_QUALITY } from '../../../utils/constants'
 const app = getApp();
 const { $toast, $formatDate } = app.globalData
 Page({
@@ -142,7 +143,7 @@ Page({
     for (let i = 0; i < file.length; i++) {
       wx.compressImage({
         src: file[i].url, // 图片路径
-        quality: 60, // 压缩质量
+        quality: UPLOAD_IMAGE_QUALITY, // 压缩质量
         success: function (res) {
           uploadPromiseTask.push(that.uploadFile(res.tempFilePath));
           uploadIndex++
